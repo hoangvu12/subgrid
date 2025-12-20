@@ -194,6 +194,14 @@
               <span class="iconify h-4 w-4" data-icon="ph:dots-six-bold"></span>
               Swarm
             </button>
+            <button
+              id="view-circlepack"
+              onclick="setView('circlepack')"
+              class="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all bg-white text-slate-600"
+            >
+              <span class="iconify h-4 w-4" data-icon="ph:circles-three-bold"></span>
+              Bubbles
+            </button>
           </div>
         </div>
 
@@ -211,8 +219,8 @@
             class="treemap-container mb-4 bg-slate-50 sm:mb-6 hidden relative"
           ></div>
           <div
-            id="spiral-container"
-            class="treemap-container mb-4 bg-slate-50 sm:mb-6 hidden"
+            id="circlepack-container"
+            class="treemap-container mb-4 bg-slate-50 sm:mb-6 hidden relative"
           ></div>
 
           <div
@@ -783,6 +791,7 @@
     <script src="js/app.js"></script>
     <script src="js/treemap.js"></script>
     <script src="js/beeswarm.js"></script>
+    <script src="js/circlepack.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/bank-import.js"></script>
   </body>

@@ -103,3 +103,19 @@ input[type="number"]::-webkit-outer-spin-button {
     border-width: 1.5px;
   }
 }
+
+/* Circle pack bubbles */
+.circlepack-bubble {
+  transition: transform 0.2s ease, z-index 0s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.circlepack-bubble:hover,
+.circlepack-bubble.active {
+  z-index: 100;
+}
+
+.circlepack-bubble.active .circlepack-tooltip {
+  opacity: 1;
+}
