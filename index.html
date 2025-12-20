@@ -37,6 +37,7 @@
     />
     <script>
       tailwind.config = {
+        darkMode: 'class', // Enable dark mode with class strategy
         theme: {
           extend: {
             fontFamily: {
@@ -77,7 +78,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body
-    class="flex min-h-screen flex-col bg-[#F8F9FB] font-sans text-slate-800 selection:bg-indigo-100 selection:text-indigo-900"
+    class="flex min-h-screen flex-col bg-[#F8F9FB] dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900 selection:text-indigo-900 dark:selection:text-indigo-100"
   >
     <!-- PWA Install Banner -->
     <div
@@ -120,16 +121,16 @@
     >
       <div class="mb-3 flex justify-end sm:mb-4">
         <div
-          class="text-xs font-bold uppercase tracking-widest text-slate-400"
+          class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500"
           id="step-indicator"
         >
           Step 1 of 3
         </div>
       </div>
-      <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+      <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
         <div
           id="progress-bar"
-          class="h-full w-1/3 rounded-full bg-indigo-600 transition-all duration-500 ease-out"
+          class="h-full w-1/3 rounded-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-500 ease-out"
         ></div>
       </div>
     </header>
@@ -140,26 +141,26 @@
       <div id="step-1" class="step-panel active">
         <div
           id="empty-state"
-          class="group mb-4 flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 bg-white p-8 text-center transition-all hover:border-indigo-300 hover:bg-slate-50"
+          class="group mb-4 flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 text-center transition-all hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-slate-50 dark:hover:bg-slate-700"
           onclick="openModal()"
         >
           <div
-            class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 transition-transform group-hover:scale-110"
+            class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 transition-transform group-hover:scale-110"
           >
             <span class="iconify h-8 w-8" data-icon="ph:plus-bold"></span>
           </div>
-          <h3 class="text-lg font-bold text-slate-900">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">
             Add first subscription
           </h3>
-          <p class="mt-1 text-sm text-slate-400">Netflix, Spotify, Gym, etc.</p>
+          <p class="mt-1 text-sm text-slate-400 dark:text-slate-500">Netflix, Spotify, Gym, etc.</p>
         </div>
 
         <div id="sub-list-container" class="mb-4 hidden space-y-3"></div>
 
         <div id="presets-section" class="mb-6">
           <div class="mb-3 flex items-center justify-between">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Add</h4>
-            <button onclick="openPresetsBrowser()" class="text-xs font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Quick Add</h4>
+            <button onclick="openPresetsBrowser()" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1">
               Browse all
               <span class="iconify h-3.5 w-3.5" data-icon="ph:caret-right-bold"></span>
             </button>
@@ -169,26 +170,26 @@
 
         <div id="import-section" class="mb-24 space-y-3">
           <div class="mb-3">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Import</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Import</h4>
           </div>
           <button
             onclick="openBankImport()"
-            class="flex w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 bg-white py-4 transition-all hover:border-indigo-300 hover:bg-slate-50 active:scale-[0.99]"
+            class="flex w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-4 transition-all hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-[0.99]"
           >
-            <div class="flex items-center gap-2 text-sm font-semibold text-slate-500">
+            <div class="flex items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-300">
               <span class="iconify h-5 w-5" data-icon="ph:bank-bold"></span>
               Import from bank statement
             </div>
-            <span class="text-xs text-slate-400">CSV file from your bank</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500">CSV file from your bank</span>
           </button>
           <label
-            class="flex cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 bg-white py-4 transition-all hover:border-indigo-300 hover:bg-slate-50 active:scale-[0.99]"
+            class="flex cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-4 transition-all hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-[0.99]"
           >
-            <div class="flex items-center gap-2 text-sm font-semibold text-slate-500">
+            <div class="flex items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-300">
               <span class="iconify h-5 w-5" data-icon="ph:upload-simple-bold"></span>
               Restore from SubGrid backup
             </div>
-            <span class="text-xs text-slate-400">Previously exported .json file</span>
+            <span class="text-xs text-slate-400 dark:text-slate-500">Previously exported .json file</span>
             <input type="file" accept=".json" onchange="importData(event)" class="hidden" />
           </label>
         </div>
@@ -200,7 +201,7 @@
             <div class="flex items-center gap-2">
               <button
                 onclick="openSettings()"
-                class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white text-slate-400 shadow-lg shadow-slate-900/10 transition-all hover:text-slate-600 active:scale-95 sm:h-14 sm:w-14 sm:rounded-2xl"
+                class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-400 dark:text-slate-300 shadow-lg shadow-slate-900/10 dark:shadow-black/20 transition-all hover:text-slate-600 dark:hover:text-slate-100 active:scale-95 sm:h-14 sm:w-14 sm:rounded-2xl"
                 title="Settings"
               >
                 <span class="iconify h-5 w-5 sm:h-6 sm:w-6" data-icon="ph:gear-bold"></span>
@@ -208,7 +209,7 @@
               <button
                 onclick="clearAllSubs()"
                 id="clear-btn"
-                class="pointer-events-auto hidden items-center gap-1.5 rounded-full bg-white py-3 pl-4 pr-5 text-sm font-bold text-slate-400 shadow-lg shadow-slate-900/10 transition-all hover:text-red-500 active:scale-95 sm:py-3.5 sm:pl-5 sm:pr-6"
+                class="pointer-events-auto hidden items-center gap-1.5 rounded-full bg-white dark:bg-slate-800 py-3 pl-4 pr-5 text-sm font-bold text-slate-400 dark:text-slate-300 shadow-lg shadow-slate-900/10 dark:shadow-black/20 transition-all hover:text-red-500 dark:hover:text-red-400 active:scale-95 sm:py-3.5 sm:pl-5 sm:pr-6"
               >
                 <span class="iconify h-4 w-4" data-icon="ph:trash-bold"></span>
                 Clear All
@@ -218,7 +219,7 @@
               onclick="goToStep(2)"
               id="next-btn-1"
               disabled
-              class="pointer-events-auto flex cursor-not-allowed items-center gap-2 rounded-full bg-slate-900 py-3 pl-5 pr-4 text-sm font-bold text-white opacity-50 shadow-xl shadow-slate-900/20 transition-all hover:scale-105 active:scale-95 sm:py-3.5 sm:pl-6 sm:pr-5 sm:text-base"
+              class="pointer-events-auto flex cursor-not-allowed items-center gap-2 rounded-full bg-slate-900 dark:bg-indigo-600 py-3 pl-5 pr-4 text-sm font-bold text-white opacity-50 shadow-xl shadow-slate-900/20 dark:shadow-indigo-900/20 transition-all hover:scale-105 active:scale-95 sm:py-3.5 sm:pl-6 sm:pr-5 sm:text-base"
             >
               Generate Grid
               <span
@@ -475,17 +476,17 @@
       class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
     >
       <div
-        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white dark:bg-slate-800 opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
       >
         <div
-          class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
+          class="flex shrink-0 items-center justify-between border-b border-slate-100 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900" id="modal-title">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100" id="modal-title">
             Add Subscription
           </h3>
           <button
             onclick="closeModal()"
-            class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
+            class="rounded-full bg-slate-100 dark:bg-slate-700 p-2 text-slate-400 dark:text-slate-300 transition-colors hover:text-slate-600 dark:hover:text-slate-100"
           >
             <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
           </button>
@@ -494,13 +495,13 @@
         <form
           id="sub-form"
           onsubmit="handleFormSubmit(event)"
-          class="space-y-5 overflow-y-auto bg-white p-6"
+          class="space-y-5 overflow-y-auto bg-white dark:bg-slate-800 p-6"
         >
           <input type="hidden" id="entry-id" />
 
           <div>
             <label
-              class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
+              class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
               >Website (Optional)</label
             >
             <div class="flex gap-3">
@@ -509,14 +510,14 @@
                 id="url"
                 placeholder="netflix.com"
                 oninput="updateFavicon(this.value)"
-                class="block w-full flex-1 rounded-xl border border-slate-200 bg-slate-50 p-3 text-base font-semibold text-slate-900 placeholder:text-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                class="block w-full flex-1 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 p-3 text-base font-semibold text-slate-900 dark:text-slate-100 placeholder:text-slate-300 dark:placeholder:text-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
               />
               <div
                 id="favicon-preview"
-                class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-100"
+                class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-100 dark:bg-slate-700"
               >
                 <span
-                  class="iconify h-5 w-5 text-slate-300"
+                  class="iconify h-5 w-5 text-slate-300 dark:text-slate-500"
                   data-icon="ph:globe-simple"
                 ></span>
               </div>
@@ -525,7 +526,7 @@
 
           <div>
             <label
-              class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
+              class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
               >Service Name</label
             >
             <input
@@ -533,7 +534,7 @@
               id="name"
               required
               placeholder="e.g. Netflix"
-              class="block w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-base font-semibold text-slate-900 placeholder:text-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+              class="block w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 p-3 text-base font-semibold text-slate-900 dark:text-slate-100 placeholder:text-slate-300 dark:placeholder:text-slate-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
             />
           </div>
 
@@ -615,52 +616,88 @@
       class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
     >
       <div
-        class="pointer-events-auto flex max-h-[85vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-md sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+        class="pointer-events-auto flex max-h-[85vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white dark:bg-slate-800 opacity-0 shadow-2xl transition-all duration-300 sm:max-w-md sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
       >
         <div
-          class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
+          class="flex shrink-0 items-center justify-between border-b border-slate-100 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900">Settings</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Settings</h3>
           <button
             onclick="closeSettings()"
-            class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
+            class="rounded-full bg-slate-100 dark:bg-slate-700 p-2 text-slate-400 dark:text-slate-300 transition-colors hover:text-slate-600 dark:hover:text-slate-100"
           >
             <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
           </button>
         </div>
 
-        <div class="overflow-y-auto bg-white p-6 space-y-6">
+        <div class="overflow-y-auto bg-white dark:bg-slate-800 p-6 space-y-6">
+          <!-- Theme Selector -->
           <div>
+            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Theme
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+              <button
+                id="theme-auto"
+                onclick="setTheme('auto')"
+                class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 py-4 px-3 transition-all hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-600 active:scale-95 active-theme"
+              >
+                <span class="iconify h-6 w-6 text-slate-600 dark:text-slate-300" data-icon="ph:magic-wand-bold"></span>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Auto</span>
+              </button>
+              <button
+                id="theme-light"
+                onclick="setTheme('light')"
+                class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 py-4 px-3 transition-all hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-600 active:scale-95 inactive-theme"
+              >
+                <span class="iconify h-6 w-6 text-slate-600 dark:text-slate-300" data-icon="ph:sun-bold"></span>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Light</span>
+              </button>
+              <button
+                id="theme-dark"
+                onclick="setTheme('dark')"
+                class="flex flex-col items-center gap-2 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 py-4 px-3 transition-all hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-slate-600 active:scale-95 inactive-theme"
+              >
+                <span class="iconify h-6 w-6 text-slate-600 dark:text-slate-300" data-icon="ph:moon-bold"></span>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Dark</span>
+              </button>
+            </div>
+            <p class="mt-2 text-xs text-slate-400 dark:text-slate-500">
+              Auto syncs with your device theme preference
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 dark:border-slate-700 pt-6">
             <label
-              class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500"
+              class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
               >Currency</label
             >
             <div class="relative">
               <select
                 id="currency-selector"
-                class="block w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-base font-semibold text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                class="block w-full appearance-none rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 p-4 text-base font-semibold text-slate-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
               ></select>
               <span
-                class="iconify pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+                class="iconify pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500"
                 data-icon="ph:caret-down-bold"
               ></span>
             </div>
-            <p class="mt-2 text-xs text-slate-400">
+            <p class="mt-2 text-xs text-slate-400 dark:text-slate-500">
               All prices will be converted using approximate exchange rates
             </p>
           </div>
 
-          <div class="border-t border-slate-100 pt-6">
-            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500">
+          <div class="border-t border-slate-100 dark:border-slate-700 pt-6">
+            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Import & Export
             </label>
-            <p class="mb-4 text-xs text-slate-400">
+            <p class="mb-4 text-xs text-slate-400 dark:text-slate-500">
               Backup your subscriptions or transfer them to another device
             </p>
             <div class="flex gap-3">
               <button
                 onclick="exportData()"
-                class="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-slate-200 bg-white py-3 font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-95"
+                class="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 py-3 font-semibold text-slate-700 dark:text-slate-200 transition-all hover:border-slate-300 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-600 active:scale-95"
               >
                 <span class="iconify h-5 w-5" data-icon="ph:download-simple-bold"></span>
                 Export
@@ -689,35 +726,35 @@
       class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
     >
       <div
-        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white dark:bg-slate-800 opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
       >
         <div
-          class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
+          class="flex shrink-0 items-center justify-between border-b border-slate-100 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900">Browse Subscriptions</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Browse Subscriptions</h3>
           <button
             onclick="closePresetsBrowser()"
-            class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
+            class="rounded-full bg-slate-100 dark:bg-slate-700 p-2 text-slate-400 dark:text-slate-300 transition-colors hover:text-slate-600 dark:hover:text-slate-100"
           >
             <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
           </button>
         </div>
 
-        <div class="border-b border-slate-100 bg-white px-5 py-3">
+        <div class="border-b border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-3">
           <div class="relative">
-            <span class="iconify absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" data-icon="ph:magnifying-glass"></span>
+            <span class="iconify absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500" data-icon="ph:magnifying-glass"></span>
             <input
               type="text"
               id="presets-search"
               placeholder="Search subscriptions..."
               oninput="filterPresets(this.value)"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 py-2.5 pl-10 pr-4 text-sm font-medium text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
             />
           </div>
           <div class="mt-3 flex flex-wrap gap-1.5" id="category-filters"></div>
         </div>
 
-        <div class="overflow-y-auto bg-white p-5" id="presets-browser-list" style="max-height: 50vh;"></div>
+        <div class="overflow-y-auto bg-white dark:bg-slate-800 p-5" id="presets-browser-list" style="max-height: 50vh;"></div>
       </div>
     </div>
 
@@ -731,32 +768,32 @@
       class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
     >
       <div
-        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white dark:bg-slate-800 opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
       >
         <div
-          class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
+          class="flex shrink-0 items-center justify-between border-b border-slate-100 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900" id="bank-import-title">Import Bank Statement</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100" id="bank-import-title">Import Bank Statement</h3>
           <button
             onclick="closeBankImport()"
-            class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
+            class="rounded-full bg-slate-100 dark:bg-slate-700 p-2 text-slate-400 dark:text-slate-300 transition-colors hover:text-slate-600 dark:hover:text-slate-100"
           >
             <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
           </button>
         </div>
 
-        <div class="overflow-y-auto bg-white p-5" style="max-height: 70vh;">
+        <div class="overflow-y-auto bg-white dark:bg-slate-800 p-5" style="max-height: 70vh;">
           <!-- Step 1: Upload -->
           <div id="bank-step-1">
-            <p class="mb-4 text-sm text-slate-600">
+            <p class="mb-4 text-sm text-slate-600 dark:text-slate-300">
               Upload a CSV file exported from your bank. We'll detect recurring transactions that might be subscriptions.
             </p>
             <label
-              class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 py-8 transition-all hover:border-indigo-400 hover:bg-indigo-50"
+              class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 py-8 transition-all hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-slate-600"
             >
-              <span class="iconify h-10 w-10 text-slate-400" data-icon="ph:file-csv"></span>
-              <span class="text-sm font-semibold text-slate-600">Choose CSV file</span>
-              <span class="text-xs text-slate-400">or drag and drop</span>
+              <span class="iconify h-10 w-10 text-slate-400 dark:text-slate-500" data-icon="ph:file-csv"></span>
+              <span class="text-sm font-semibold text-slate-600 dark:text-slate-300">Choose CSV file</span>
+              <span class="text-xs text-slate-400 dark:text-slate-500">or drag and drop</span>
               <input type="file" accept=".csv" onchange="handleBankCSV(event)" class="hidden" id="bank-csv-input" />
             </label>
           </div>
@@ -841,6 +878,7 @@
     <a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>
 
 
+    <script src="js/theme.js"></script>
     <script src="js/presets.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/rates.js"></script>

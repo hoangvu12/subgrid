@@ -1,9 +1,75 @@
+/* ============================================
+   CSS VARIABLES FOR THEMING
+   ============================================ */
+:root {
+  /* Light mode colors */
+  --bg-primary: #F8F9FB;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  
+  --accent-indigo: #6366F1;
+  --accent-indigo-hover: #4f46e5;
+  
+  --shadow-sm: rgba(0, 0, 0, 0.05);
+  --shadow-md: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+/* Dark mode colors */
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #64748b;
+  
+  --border-primary: #334155;
+  --border-secondary: #475569;
+  
+  --accent-indigo: #818cf8;
+  --accent-indigo-hover: #a5b4fc;
+  
+  --shadow-sm: rgba(0, 0, 0, 0.3);
+  --shadow-md: rgba(0, 0, 0, 0.4);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
+  
+  --scrollbar-thumb: #475569;
+  --scrollbar-thumb-hover: #64748b;
+}
+
+/* Smooth theme transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Exclude animations and transforms from theme transition */
+*:not(.step-panel):not(.treemap-cell):not(.treemap-cell-inner):not(.beeswarm-dot):not(.circlepack-bubble) {
+  transition-property: background-color, border-color, color, fill, stroke;
+}
+
 /* custom scrollbar - webkit only but whatever */
 ::-webkit-scrollbar { width: 6px }
 ::-webkit-scrollbar-track { background: transparent }
 ::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: var(--scrollbar-thumb);
   border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
 }
 
 /* hide number input spinners */
@@ -117,5 +183,40 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .circlepack-bubble.active .circlepack-tooltip {
+  opacity: 1;
+}
+
+/* Theme toggle buttons */
+.active-theme {
+  border-color: #6366F1 !important;
+  background-color: #EEF2FF !important;
+}
+
+.dark .active-theme {
+  border-color: #818cf8 !important;
+  background-color: #312e81 !important;
+}
+
+.active-theme .iconify {
+  color: #6366F1 !important;
+}
+
+.dark .active-theme .iconify {
+  color: #a5b4fc !important;
+}
+
+.active-theme span:last-child {
+  color: #4f46e5 !important;
+}
+
+.dark .active-theme span:last-child {
+  color: #c7d2fe !important;
+}
+
+.inactive-theme {
+  opacity: 0.6;
+}
+
+.inactive-theme:hover {
   opacity: 1;
 }

@@ -272,21 +272,21 @@ function renderList() {
     const sub = subs[i];
     const color = getColor(sub.color);
 
-    html += '<div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl shadow-sm">';
+    html += '<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">';
     html += '<div class="flex items-center gap-3 flex-1 min-w-0 cursor-pointer" onclick="editSub(\'' + sub.id + '\')">';
     html += '<div class="w-1 h-10 rounded-full shrink-0" style="background: linear-gradient(180deg, ' + color.bg + ' 0%, ' + color.accent + ' 100%);"></div>';
     html += iconHtml(sub, "w-10 h-10");
     html += '<div class="min-w-0">';
-    html += '<div class="font-bold text-slate-900 truncate">' + sub.name + '</div>';
-    html += '<div class="text-xs text-slate-500">' + formatOriginalPrice(sub) + ' / ' + sub.cycle + '</div>';
+    html += '<div class="font-bold text-slate-900 dark:text-slate-100 truncate">' + sub.name + '</div>';
+    html += '<div class="text-xs text-slate-500 dark:text-slate-400">' + formatOriginalPrice(sub) + ' / ' + sub.cycle + '</div>';
     html += '</div></div>';
     html += '<div class="flex items-center gap-1">';
-    html += '<button onclick="editSub(\'' + sub.id + '\')" class="text-slate-300 hover:text-indigo-500 p-2"><span class="iconify" data-icon="ph:pencil-simple-bold"></span></button>';
-    html += '<button onclick="removeSub(\'' + sub.id + '\')" class="text-slate-300 hover:text-red-500 p-2"><span class="iconify" data-icon="ph:trash-bold"></span></button>';
+    html += '<button onclick="editSub(\'' + sub.id + '\')" class="text-slate-300 dark:text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-400 p-2"><span class="iconify" data-icon="ph:pencil-simple-bold"></span></button>';
+    html += '<button onclick="removeSub(\'' + sub.id + '\')" class="text-slate-300 dark:text-slate-600 hover:text-red-500 dark:hover:text-red-400 p-2"><span class="iconify" data-icon="ph:trash-bold"></span></button>';
     html += '</div></div>';
   }
 
-  html += '<button onclick="openModal()" class="w-full py-4 rounded-2xl border-2 border-dashed border-slate-200 text-slate-400 font-bold hover:border-indigo-300 hover:text-indigo-600 hover:bg-white transition-all flex items-center justify-center gap-2">';
+  html += '<button onclick="openModal()" class="w-full py-4 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 font-bold hover:border-indigo-300 dark:hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-white dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2">';
   html += '<span class="iconify w-5 h-5" data-icon="ph:plus-bold"></span> Add Another</button>';
 
   listContainer.innerHTML = html;
@@ -379,9 +379,9 @@ function renderPresets() {
     const logo = "https://img.logo.dev/" + preset.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
 
     html += '<button onclick="openModalWithPreset(' + presetIndex + ')" ';
-    html += 'class="flex flex-col items-center gap-1.5 rounded-xl border border-slate-100 bg-white p-2.5 shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-95 sm:p-3">';
+    html += 'class="flex flex-col items-center gap-1.5 rounded-xl border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 p-2.5 shadow-sm transition-all hover:border-indigo-200 dark:hover:border-indigo-600 hover:shadow-md active:scale-95 sm:p-3">';
     html += '<img src="' + logo + '" class="h-8 w-8 rounded-lg object-contain sm:h-10 sm:w-10" crossorigin="anonymous" alt="' + preset.name + '">';
-    html += '<span class="text-[10px] font-semibold text-slate-600 truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
+    html += '<span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300 truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
     html += '</button>';
   }
   grid.innerHTML = html;
