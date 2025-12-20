@@ -83,40 +83,34 @@
   <body
     class="flex min-h-screen flex-col bg-[#F8F9FB] dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900 selection:text-indigo-900 dark:selection:text-indigo-100"
   >
-    <!-- PWA Install Banner -->
+    <!-- PWA Install Banner - Right Side -->
     <div
       id="install-banner"
-      class="hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
+      class="hidden fixed top-20 right-4 z-50 w-64 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 p-4 text-white shadow-2xl"
     >
-      <div class="mx-auto max-w-4xl px-4 py-3 sm:px-6">
-        <div class="flex items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20">
-              <span class="iconify h-6 w-6" data-icon="ph:download-simple-bold"></span>
-            </div>
-            <div class="flex-1">
-              <p class="text-sm font-bold">Install SubGrid</p>
-              <p class="text-xs opacity-90">Access offline & save to home screen</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <button
-              id="install-btn"
-              onclick="installPWA()"
-              class="rounded-lg bg-white px-4 py-2 text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-50 active:scale-95"
-            >
-              Install
-            </button>
-            <button
-              onclick="document.getElementById('install-banner').classList.add('hidden')"
-              class="rounded-lg p-2 transition-all hover:bg-white/10 active:scale-95"
-              aria-label="Close"
-            >
-              <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
-            </button>
-          </div>
+      <button
+        onclick="document.getElementById('install-banner').classList.add('hidden')"
+        class="absolute right-2 top-2 rounded-lg p-1.5 transition-all hover:bg-white/10 active:scale-95"
+        aria-label="Close"
+      >
+        <span class="iconify h-4 w-4" data-icon="ph:x-bold"></span>
+      </button>
+      
+      <div class="mb-4 flex flex-col items-center text-center">
+        <div class="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
+          <span class="iconify h-8 w-8" data-icon="ph:download-simple-bold"></span>
         </div>
+        <p class="text-sm font-bold">Install SubGrid</p>
+        <p class="mt-1 text-xs opacity-90">Access offline & save to home screen</p>
       </div>
+      
+      <button
+        id="install-btn"
+        onclick="installPWA()"
+        class="w-full rounded-xl bg-white py-2.5 text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-50 active:scale-95"
+      >
+        Install App
+      </button>
     </div>
 
     <header

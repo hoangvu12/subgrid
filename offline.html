@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Offline - SubGrid</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="shortcut icon" href="/icons/favicon-32x32.png" />
+    
+    <!-- Theme initialization (must run before body renders) -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'auto';
+        if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
     <link
@@ -12,6 +28,7 @@
     />
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -35,7 +52,7 @@
       }
     </style>
   </head>
-  <body class="flex min-h-screen flex-col bg-[#F8F9FB] font-sans text-slate-800">
+  <body class="flex min-h-screen flex-col bg-[#F8F9FB] dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-100">
     <div class="flex flex-1 flex-col items-center justify-center px-4 py-12">
       <div class="mx-auto max-w-md text-center">
         <!-- Animated Icon -->
@@ -46,20 +63,20 @@
         </div>
 
         <!-- Title -->
-        <h1 class="mb-4 text-3xl font-bold text-slate-900">You're Offline</h1>
+        <h1 class="mb-4 text-3xl font-bold text-slate-900 dark:text-slate-100">You're Offline</h1>
         
         <!-- Description -->
-        <p class="mb-8 text-lg text-slate-600">
+        <p class="mb-8 text-lg text-slate-600 dark:text-slate-300">
           It looks like you've lost your internet connection. Don't worry, your subscription data is safely stored on your device!
         </p>
 
         <!-- Info Box -->
-        <div class="mb-8 rounded-2xl bg-white p-6 shadow-lg">
-          <div class="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-indigo-600">
+        <div class="mb-8 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-lg">
+          <div class="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
             <span class="iconify h-5 w-5" data-icon="ph:info-bold"></span>
             What you can do offline:
           </div>
-          <ul class="space-y-2 text-left text-sm text-slate-600">
+          <ul class="space-y-2 text-left text-sm text-slate-600 dark:text-slate-300">
             <li class="flex items-start gap-2">
               <span class="iconify mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" data-icon="ph:check-circle-fill"></span>
               <span>View your saved subscriptions</span>
@@ -91,7 +108,7 @@
           
           <button
             onclick="window.history.back()"
-            class="flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-700 shadow-md transition-all hover:bg-slate-50 hover:scale-105 active:scale-95"
+            class="flex w-full items-center justify-center gap-2 rounded-full bg-white dark:bg-slate-800 px-6 py-3 font-semibold text-slate-700 dark:text-slate-200 shadow-md transition-all hover:bg-slate-50 dark:hover:bg-slate-700 hover:scale-105 active:scale-95"
           >
             <span class="iconify h-5 w-5" data-icon="ph:arrow-left-bold"></span>
             Go Back
@@ -99,7 +116,7 @@
         </div>
 
         <!-- Connection Status -->
-        <div class="mt-8 text-sm text-slate-400">
+        <div class="mt-8 text-sm text-slate-400 dark:text-slate-500">
           <p id="connection-status">Checking connection status...</p>
         </div>
       </div>
@@ -109,12 +126,13 @@
       // Monitor online/offline status
       function updateConnectionStatus() {
         const status = document.getElementById('connection-status');
+        const isDark = document.documentElement.classList.contains('dark');
         if (navigator.onLine) {
           status.textContent = '✓ Connection restored! Click "Try Again" to reload.';
           status.className = 'text-green-600 font-semibold';
         } else {
           status.textContent = '✗ Still offline. Please check your connection.';
-          status.className = 'text-slate-400';
+          status.className = isDark ? 'text-slate-500' : 'text-slate-400';
         }
       }
 
