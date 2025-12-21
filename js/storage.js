@@ -23,18 +23,27 @@ function save() {
 
 function loadCurrency() {
   const saved = localStorage.getItem(CURRENCY_KEY);
+  const manuallySet = localStorage.getItem('currencyManuallySet');
 
   // make sure it's a valid currency code
   if (saved && currencies[saved]) {
     selectedCurrency = saved;
   } else {
-    selectedCurrency = "USD";
+    // Only set default if location detection has already happened
+    const locationDetected = localStorage.getItem('locationDetected');
+    if (locationDetected === 'true' || locationDetected === 'declined') {
+      selectedCurrency = "USD";
+    } else {
+      // Wait for location detection to complete
+      selectedCurrency = "USD";
+    }
   }
 }
 
 function saveCurrency(code) {
   selectedCurrency = code;
   localStorage.setItem(CURRENCY_KEY, code);
+  localStorage.setItem('currencyManuallySet', 'true');
 
   renderList();
   if (step === 2) renderGrid();

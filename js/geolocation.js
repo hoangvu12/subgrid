@@ -135,6 +135,21 @@ function declineLocationDetection() {
 
   // Mark as declined
   localStorage.setItem('locationDetected', 'declined');
+  
+  // Set USD as default if no currency is set
+  const currentCurrency = localStorage.getItem('currency');
+  if (!currentCurrency) {
+    localStorage.setItem('currency', 'USD');
+    window.selectedCurrency = 'USD';
+    
+    // Initialize selectors
+    if (typeof window.initCurrencySelector === 'function') {
+      window.initCurrencySelector();
+    }
+    if (typeof window.initFormCurrencySelector === 'function') {
+      window.initFormCurrencySelector();
+    }
+  }
 
   // Show info message about manual selection
   showManualCurrencyMessage();
@@ -204,9 +219,12 @@ async function performLocationDetection() {
     const detectedCurrency = countryCurrencyMap[countryCode] || 'USD';
     console.log(`Mapped ${countryCode} to currency: ${detectedCurrency}`);
     
-    // Only auto-set if user hasn't manually selected a currency yet
+    // Only auto-set if user hasn't manually selected a currency
     const currentCurrency = localStorage.getItem('currency');
-    if (!currentCurrency || currentCurrency === 'USD') {
+    const manuallySet = localStorage.getItem('currencyManuallySet');
+    
+    // Override USD default or set if nothing exists, but not if user manually changed it
+    if (!manuallySet || manuallySet !== 'true') {
       // Set currency in localStorage first
       localStorage.setItem('currency', detectedCurrency);
       window.selectedCurrency = detectedCurrency;
@@ -234,6 +252,8 @@ async function performLocationDetection() {
           window.updateTotals();
         }
       }
+    } else {
+      console.log('Currency was manually set, skipping auto-detection');
     }
 
     // Store location info for display (optional)

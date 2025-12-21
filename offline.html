@@ -113,6 +113,14 @@
             <span class="iconify h-5 w-5" data-icon="ph:arrow-left-bold"></span>
             Go Back
           </button>
+          
+          <button
+            onclick="clearAllAppData()"
+            class="flex w-full items-center justify-center gap-2 rounded-full border-2 border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/20 px-6 py-3 font-semibold text-red-700 dark:text-red-400 transition-all hover:border-red-300 dark:hover:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 hover:scale-105 active:scale-95"
+          >
+            <span class="iconify h-5 w-5" data-icon="ph:trash-bold"></span>
+            Clear All Data
+          </button>
         </div>
 
         <!-- Connection Status -->
@@ -122,6 +130,7 @@
       </div>
     </div>
 
+    <script src="js/clear-data.js"></script>
     <script>
       // Monitor online/offline status
       function updateConnectionStatus() {

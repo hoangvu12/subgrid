@@ -718,6 +718,25 @@
             </div>
           </div>
 
+          <div class="border-t border-slate-100 dark:border-slate-700 pt-6">
+            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              Data Management
+            </label>
+            <p class="mb-4 text-xs text-slate-400 dark:text-slate-500">
+              Clear all app data including subscriptions, settings, and cache
+            </p>
+            <button
+              onclick="clearAllAppData()"
+              class="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/20 py-3 font-semibold text-red-700 dark:text-red-400 transition-all hover:border-red-300 dark:hover:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 active:scale-95"
+            >
+              <span class="iconify h-5 w-5" data-icon="ph:trash-bold"></span>
+              Clear All Data
+            </button>
+            <p class="mt-2 text-xs text-red-600 dark:text-red-400">
+              Warning: This action cannot be undone
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -895,6 +914,7 @@
     <script src="js/modals.js"></script>
     <script src="js/bank-import.js"></script>
     <script src="js/geolocation.js"></script>
+    <script src="js/clear-data.js"></script>
     
     <!-- PWA Service Worker Registration -->
     <script>
