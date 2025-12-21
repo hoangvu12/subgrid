@@ -938,6 +938,7 @@
       
       // PWA Install Prompt
       let deferredPrompt;
+      let installBannerTimeout;
       const installBanner = document.getElementById('install-banner');
       const installButton = document.getElementById('install-btn');
       
@@ -948,12 +949,29 @@
         // Show install banner
         if (installBanner) {
           installBanner.classList.remove('hidden');
+          
+          // Auto-hide after 15 seconds if user doesn't interact
+          installBannerTimeout = setTimeout(() => {
+            if (installBanner && !installBanner.classList.contains('hidden')) {
+              installBanner.style.opacity = '0';
+              installBanner.style.transform = 'translateY(-20px)';
+              installBanner.style.transition = 'all 0.3s ease-in-out';
+              setTimeout(() => {
+                installBanner.classList.add('hidden');
+                installBanner.style.opacity = '';
+                installBanner.style.transform = '';
+              }, 300);
+            }
+          }, 15000); // 15 seconds
         }
       });
       
       window.addEventListener('appinstalled', () => {
         console.log('✓ PWA installed successfully');
         deferredPrompt = null;
+        if (installBannerTimeout) {
+          clearTimeout(installBannerTimeout);
+        }
         if (installBanner) {
           installBanner.classList.add('hidden');
         }
@@ -961,6 +979,11 @@
       
       function installPWA() {
         if (!deferredPrompt) return;
+        
+        // Clear auto-hide timeout when user interacts
+        if (installBannerTimeout) {
+          clearTimeout(installBannerTimeout);
+        }
         
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {

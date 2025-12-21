@@ -207,14 +207,19 @@ async function performLocationDetection() {
     // Only auto-set if user hasn't manually selected a currency yet
     const currentCurrency = localStorage.getItem('currency');
     if (!currentCurrency || currentCurrency === 'USD') {
+      // Set currency in localStorage first
       localStorage.setItem('currency', detectedCurrency);
-      window.currency = detectedCurrency;
+      window.selectedCurrency = detectedCurrency;
+      
       console.log(`Auto-set currency to: ${detectedCurrency}`);
       
-      // Update UI if currency select exists
-      const currencySelect = document.getElementById('currency-select');
-      if (currencySelect) {
-        currencySelect.value = detectedCurrency;
+      // Reinitialize currency selectors to reflect the new currency
+      if (typeof window.initCurrencySelector === 'function') {
+        window.initCurrencySelector();
+      }
+      
+      if (typeof window.initFormCurrencySelector === 'function') {
+        window.initFormCurrencySelector();
       }
       
       // Refresh rates and render if subscriptions exist
