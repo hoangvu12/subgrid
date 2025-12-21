@@ -220,40 +220,40 @@ async function performLocationDetection() {
     console.log(`Mapped ${countryCode} to currency: ${detectedCurrency}`);
     
     // Only auto-set if user hasn't manually selected a currency
-    const currentCurrency = localStorage.getItem('currency');
     const manuallySet = localStorage.getItem('currencyManuallySet');
     
-    // Override USD default or set if nothing exists, but not if user manually changed it
-    if (!manuallySet || manuallySet !== 'true') {
-      // Set currency in localStorage first
-      localStorage.setItem('currency', detectedCurrency);
-      window.selectedCurrency = detectedCurrency;
-      
-      console.log(`Auto-set currency to: ${detectedCurrency}`);
-      
-      // Reinitialize currency selectors to reflect the new currency
-      if (typeof window.initCurrencySelector === 'function') {
-        window.initCurrencySelector();
+    // Only override if not manually set by user
+    if (manuallySet === 'true') {
+      console.log('Currency was manually set by user, skipping auto-detection');
+      return;
+    }
+    
+    // Set currency in localStorage
+    localStorage.setItem('currency', detectedCurrency);
+    window.selectedCurrency = detectedCurrency;
+    
+    console.log(`Auto-set currency to: ${detectedCurrency}`);
+    
+    // Reinitialize currency selectors to reflect the new currency
+    if (typeof window.initCurrencySelector === 'function') {
+      window.initCurrencySelector();
+    }
+    
+    if (typeof window.initFormCurrencySelector === 'function') {
+      window.initFormCurrencySelector();
+    }
+    
+    // Refresh rates and render if subscriptions exist
+    if (window.subs && window.subs.length > 0) {
+      if (typeof window.loadRates === 'function') {
+        await window.loadRates();
       }
-      
-      if (typeof window.initFormCurrencySelector === 'function') {
-        window.initFormCurrencySelector();
+      if (typeof window.renderList === 'function') {
+        window.renderList();
       }
-      
-      // Refresh rates and render if subscriptions exist
-      if (window.subs && window.subs.length > 0) {
-        if (typeof window.loadRates === 'function') {
-          await window.loadRates();
-        }
-        if (typeof window.renderList === 'function') {
-          window.renderList();
-        }
-        if (typeof window.updateTotals === 'function') {
-          window.updateTotals();
-        }
+      if (typeof window.updateTotals === 'function') {
+        window.updateTotals();
       }
-    } else {
-      console.log('Currency was manually set, skipping auto-detection');
     }
 
     // Store location info for display (optional)

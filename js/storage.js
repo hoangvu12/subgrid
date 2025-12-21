@@ -23,20 +23,13 @@ function save() {
 
 function loadCurrency() {
   const saved = localStorage.getItem(CURRENCY_KEY);
-  const manuallySet = localStorage.getItem('currencyManuallySet');
 
   // make sure it's a valid currency code
   if (saved && currencies[saved]) {
     selectedCurrency = saved;
   } else {
-    // Only set default if location detection has already happened
-    const locationDetected = localStorage.getItem('locationDetected');
-    if (locationDetected === 'true' || locationDetected === 'declined') {
-      selectedCurrency = "USD";
-    } else {
-      // Wait for location detection to complete
-      selectedCurrency = "USD";
-    }
+    // Default to USD, but geolocation will override this if enabled
+    selectedCurrency = "USD";
   }
 }
 
