@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'subgrid-v1.2.0';
+const CACHE_VERSION = 'subgrid-v1.3.0';
 const CACHE_NAME = `${CACHE_VERSION}`;
 const OFFLINE_URL = '/offline.html';
 
@@ -21,6 +21,7 @@ const PRECACHE_ASSETS = [
   '/js/theme.js',
   '/js/geolocation.js',
   '/js/clear-data.js',
+  '/js/sweetalert-config.js',
   '/icons/favicon-16x16.png',
   '/icons/favicon-32x32.png',
   '/icons/icon-192x192.png',
@@ -33,7 +34,9 @@ const CDN_RESOURCES = [
   'https://cdn.tailwindcss.com',
   'https://code.iconify.design/3/3.1.1/iconify.min.js',
   'https://cdn.jsdelivr.net/npm/modern-screenshot@4.6.7/dist/index.js',
-  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap'
+  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
+  'https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.js'
 ];
 
 // Install event - cache core assets

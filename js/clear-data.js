@@ -1,19 +1,22 @@
 // Clear All App Data Functionality
 
 async function clearAllAppData() {
-  // Show confirmation dialog
-  const confirmed = confirm(
-    "⚠️ Clear All Data?\n\n" +
-    "This will permanently delete:\n" +
-    "• All subscriptions\n" +
-    "• Settings and preferences\n" +
-    "• Currency and location data\n" +
-    "• Cached data\n\n" +
-    "This action cannot be undone.\n\n" +
-    "Click OK to proceed or Cancel to keep your data."
+  // Show confirmation dialog with SweetAlert2
+  const result = await showConfirmAlert(
+    'Clear All Data?',
+    `This will permanently delete:<br><br>
+    <ul style="text-align: left; list-style: none; padding-left: 0;">
+      <li>• All subscriptions</li>
+      <li>• Settings and preferences</li>
+      <li>• Currency and location data</li>
+      <li>• Cached data</li>
+    </ul>
+    <br><strong>This action cannot be undone.</strong>`,
+    'Clear All Data',
+    'Cancel'
   );
 
-  if (!confirmed) {
+  if (!result.isConfirmed) {
     return;
   }
 
@@ -63,26 +66,27 @@ async function clearAllAppData() {
     console.log('✓ All app data cleared successfully');
 
     // Show success message
-    alert('✓ All data cleared successfully!\n\nThe page will now reload.');
+    await showSuccessAlert('Success!', 'All data cleared successfully. The page will now reload.');
 
     // Reload the page to reset the app
     window.location.reload();
 
   } catch (error) {
     console.error('Error clearing app data:', error);
-    alert('❌ Error clearing data: ' + error.message + '\n\nPlease try clearing your browser data manually.');
+    await showErrorAlert('Error', 'Failed to clear data: ' + error.message + '\n\nPlease try clearing your browser data manually.');
   }
 }
 
 // Alternative: Clear only app data, keep service worker (for PWA users who want to stay installed)
 async function clearAppDataKeepPWA() {
-  const confirmed = confirm(
-    "⚠️ Clear App Data?\n\n" +
-    "This will delete subscriptions and settings but keep the PWA installed.\n\n" +
-    "Click OK to proceed or Cancel to keep your data."
+  const result = await showConfirmAlert(
+    'Clear App Data?',
+    'This will delete subscriptions and settings but keep the PWA installed.',
+    'Clear Data',
+    'Cancel'
   );
 
-  if (!confirmed) {
+  if (!result.isConfirmed) {
     return;
   }
 
@@ -102,12 +106,12 @@ async function clearAppDataKeepPWA() {
     }
 
     console.log('✓ App data cleared (PWA preserved)');
-    alert('✓ App data cleared!\n\nThe page will now reload.');
+    await showSuccessAlert('Success!', 'App data cleared. The page will now reload.');
     window.location.reload();
 
   } catch (error) {
     console.error('Error clearing app data:', error);
-    alert('❌ Error: ' + error.message);
+    await showErrorAlert('Error', error.message);
   }
 }
 

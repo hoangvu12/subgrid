@@ -71,7 +71,7 @@ function importData(evt) {
 
   const reader = new FileReader();
 
-  reader.onload = function(e) {
+  reader.onload = async function(e) {
     try {
       const data = JSON.parse(e.target.result);
 
@@ -88,11 +88,15 @@ function importData(evt) {
 
       let replaceExisting = true;
       if (subs.length > 0) {
-        replaceExisting = confirm(
-          "You have " + subs.length + " existing subscription(s).\n\n" +
-          "Click OK to replace them with " + data.subscriptions.length + " imported subscription(s).\n\n" +
-          "Click Cancel to merge (add imported to existing)."
+        const result = await showConfirmAlert(
+          'Import Subscriptions',
+          `You have <strong>${subs.length}</strong> existing subscription(s).<br><br>
+          Do you want to <strong>replace</strong> them with <strong>${data.subscriptions.length}</strong> imported subscription(s)?<br><br>
+          Click <strong>No</strong> to merge (add imported to existing).`,
+          'Replace',
+          'Merge'
         );
+        replaceExisting = result.isConfirmed;
       }
 
       if (replaceExisting || subs.length === 0) {
@@ -118,10 +122,10 @@ function importData(evt) {
 
       save();
       closeSettings();
-      alert("Successfully imported " + data.subscriptions.length + " subscription(s)!");
+      await showSuccessAlert('Success!', `Successfully imported ${data.subscriptions.length} subscription(s)!`);
 
     } catch (err) {
-      alert("Failed to import: " + err.message);
+      await showErrorAlert('Import Failed', err.message);
     }
   };
 
