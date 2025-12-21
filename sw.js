@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'subgrid-v1.3.0';
+const CACHE_VERSION = 'subgrid-v1.3.1';
 const CACHE_NAME = `${CACHE_VERSION}`;
 const OFFLINE_URL = '/offline.html';
 
