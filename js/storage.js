@@ -27,14 +27,17 @@ function loadCurrency() {
   // make sure it's a valid currency code
   if (saved && currencies[saved]) {
     selectedCurrency = saved;
+    window.selectedCurrency = saved; // Keep window reference in sync
   } else {
     // Default to USD, but geolocation will override this if enabled
     selectedCurrency = "USD";
+    window.selectedCurrency = "USD"; // Keep window reference in sync
   }
 }
 
 function saveCurrency(code) {
   selectedCurrency = code;
+  window.selectedCurrency = code; // Keep window reference in sync
   localStorage.setItem(CURRENCY_KEY, code);
   localStorage.setItem('currencyManuallySet', 'true');
 

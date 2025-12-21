@@ -3,6 +3,9 @@ let step = 1;
 let selectedCurrency = "USD";
 let currentView = "treemap";
 
+// Make selectedCurrency accessible globally
+window.selectedCurrency = selectedCurrency;
+
 window.currencies = {
   USD: { symbol: "$", name: "US Dollar", rate: 1 },
   EUR: { symbol: "€", name: "Euro", rate: 0.92 },

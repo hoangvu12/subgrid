@@ -230,9 +230,23 @@ async function performLocationDetection() {
     
     // Set currency in localStorage
     localStorage.setItem('currency', detectedCurrency);
-    window.selectedCurrency = detectedCurrency;
     
     console.log(`Auto-set currency to: ${detectedCurrency}`);
+    
+    // Update selectedCurrency variable in app.js
+    if (typeof window.selectedCurrency !== 'undefined') {
+      window.selectedCurrency = detectedCurrency;
+    }
+    // Also update in app.js scope
+    if (typeof selectedCurrency !== 'undefined') {
+      selectedCurrency = detectedCurrency;
+    }
+    
+    // Update the dropdown directly
+    const currencyDropdown = document.getElementById('currency-selector');
+    if (currencyDropdown) {
+      currencyDropdown.value = detectedCurrency;
+    }
     
     // Reinitialize currency selectors to reflect the new currency
     if (typeof window.initCurrencySelector === 'function') {
