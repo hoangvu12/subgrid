@@ -256,6 +256,29 @@
       </div>
 
       <div id="step-2" class="step-panel">
+        <!-- Search Bar (shown only when subscriptions exist) -->
+        <div id="search-section-grid" class="mb-3 hidden">
+          <div class="relative">
+            <span class="iconify absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 dark:text-slate-500" data-icon="ph:magnifying-glass-bold"></span>
+            <input
+              type="text"
+              id="search-input-grid"
+              placeholder="Search subscriptions..."
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 py-3 pl-12 pr-10 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+              oninput="filterGridSubscriptions()"
+            />
+            <button
+              id="clear-search-btn-grid"
+              onclick="clearGridSearch()"
+              class="absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-lg p-1 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
+              title="Clear search"
+            >
+              <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
+            </button>
+          </div>
+          <div id="search-results-info-grid" class="mt-2 hidden text-center text-xs text-slate-500 dark:text-slate-400"></div>
+        </div>
+
         <!-- View Toggle -->
         <div class="mb-3 flex justify-center">
           <div class="inline-flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">

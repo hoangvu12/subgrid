@@ -5,6 +5,10 @@ let currentView = "treemap";
 let filteredSubs = []; // For search functionality
 let searchQuery = "";
 
+// Grid search variables
+window.filteredSubsGrid = [];
+window.searchQueryGrid = "";
+
 // Make selectedCurrency accessible globally
 window.selectedCurrency = selectedCurrency;
 
@@ -618,6 +622,60 @@ function clearSearch() {
   clearSearchBtn.classList.add("hidden");
   
   renderList();
+}
+
+// Grid search functionality
+function filterGridSubscriptions() {
+  const searchInput = document.getElementById("search-input-grid");
+  const clearSearchBtn = document.getElementById("clear-search-btn-grid");
+  
+  window.searchQueryGrid = searchInput.value.toLowerCase().trim();
+  
+  // Show/hide clear button
+  if (window.searchQueryGrid) {
+    clearSearchBtn.classList.remove("hidden");
+  } else {
+    clearSearchBtn.classList.add("hidden");
+  }
+  
+  if (!window.searchQueryGrid) {
+    window.filteredSubsGrid = [];
+    renderGrid();
+    // Also update other views
+    if (typeof window.renderBeeswarm === 'function') window.renderBeeswarm();
+    if (typeof window.renderCirclePack === 'function') window.renderCirclePack();
+    return;
+  }
+  
+  // Filter subscriptions by name, cycle, or price
+  window.filteredSubsGrid = subs.filter(sub => {
+    const nameMatch = sub.name.toLowerCase().includes(window.searchQueryGrid);
+    const cycleMatch = sub.cycle.toLowerCase().includes(window.searchQueryGrid);
+    const priceMatch = sub.price.toString().includes(window.searchQueryGrid);
+    const currencyMatch = sub.currency.toLowerCase().includes(window.searchQueryGrid);
+    
+    return nameMatch || cycleMatch || priceMatch || currencyMatch;
+  });
+  
+  renderGrid();
+  // Also update other views
+  if (typeof window.renderBeeswarm === 'function') window.renderBeeswarm();
+  if (typeof window.renderCirclePack === 'function') window.renderCirclePack();
+}
+
+function clearGridSearch() {
+  const searchInput = document.getElementById("search-input-grid");
+  const clearSearchBtn = document.getElementById("clear-search-btn-grid");
+  
+  searchInput.value = "";
+  window.searchQueryGrid = "";
+  window.filteredSubsGrid = [];
+  clearSearchBtn.classList.add("hidden");
+  
+  renderGrid();
+  // Also update other views
+  if (typeof window.renderBeeswarm === 'function') window.renderBeeswarm();
+  if (typeof window.renderCirclePack === 'function') window.renderCirclePack();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
