@@ -189,13 +189,27 @@ class CirclePack {
 
 function renderCirclePack() {
   const container = document.getElementById("circlepack-container");
-  if (!container || !subs.length) {
+  
+  // Use filtered subscriptions if search is active
+  const displaySubs = (typeof window.searchQueryGrid !== 'undefined' && window.searchQueryGrid) ? window.filteredSubsGrid : subs;
+  
+  if (!container || !displaySubs.length) {
     if (container) {
-      container.innerHTML = `
-        <div class="flex items-center justify-center h-full text-slate-400">
-          <p>Add subscriptions to see the circle pack</p>
-        </div>
-      `;
+      if (window.searchQueryGrid && subs.length > 0) {
+        container.innerHTML = `
+          <div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 p-8">
+            <span class="iconify mb-3 h-12 w-12" data-icon="ph:magnifying-glass-bold"></span>
+            <p class="text-sm font-medium">No subscriptions found</p>
+            <p class="text-xs mt-1">Try a different search term</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="flex items-center justify-center h-full text-slate-400">
+            <p>Add subscriptions to see the circle pack</p>
+          </div>
+        `;
+      }
     }
     return;
   }
@@ -204,7 +218,7 @@ function renderCirclePack() {
   const width = rect.width || 800;
   const height = rect.height || 600;
 
-  const items = subs.map(sub => ({ ...sub, cost: toMonthly(sub) }));
+  const items = displaySubs.map(sub => ({ ...sub, cost: toMonthly(sub) }));
   const packer = new CirclePack(width, height, 30);
   const positioned = packer.layout(items);
 

@@ -146,14 +146,14 @@ function renderCategoryFilters() {
   const cats = getCategories();
 
   let html = '<button onclick="selectCategory(null)" class="category-btn px-3 py-1 rounded-full text-xs font-semibold transition-all ';
-  html += selectedCategory ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' : 'bg-slate-900 text-white';
+  html += selectedCategory ? 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600' : 'bg-slate-900 dark:bg-indigo-600 text-white';
   html += '">All</button>';
 
   for (let i = 0; i < cats.length; i++) {
     const cat = cats[i];
     const isActive = (selectedCategory === cat);
     html += '<button onclick="selectCategory(\'' + cat + '\')" class="category-btn px-3 py-1 rounded-full text-xs font-semibold transition-all ';
-    html += isActive ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200';
+    html += isActive ? 'bg-slate-900 dark:bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600';
     html += '">' + cat + '</button>';
   }
 
@@ -197,7 +197,7 @@ function renderPresetsBrowserList(presetsToShow) {
   if (!container) return;
 
   if (presetsToShow.length === 0) {
-    container.innerHTML = '<div class="text-center text-slate-400 py-8">No subscriptions found</div>';
+    container.innerHTML = '<div class="text-center text-slate-400 dark:text-slate-500 py-8">No subscriptions found</div>';
     return;
   }
 
@@ -218,7 +218,7 @@ function renderPresetsBrowserList(presetsToShow) {
     const items = byCategory[catName];
 
     html += '<div class="mb-5">';
-    html += '<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">' + catName + '</h4>';
+    html += '<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">' + catName + '</h4>';
     html += '<div class="grid grid-cols-2 gap-2">';
 
     for (let i = 0; i < items.length; i++) {
@@ -227,11 +227,11 @@ function renderPresetsBrowserList(presetsToShow) {
       const logo = "https://img.logo.dev/" + p.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
 
       html += '<button onclick="selectPresetFromBrowser(' + idx + ')" ';
-      html += 'class="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-3 text-left shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-[0.98]">';
+      html += 'class="flex items-center gap-3 rounded-xl border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-700 p-3 text-left shadow-sm transition-all hover:border-indigo-200 dark:hover:border-indigo-600 hover:shadow-md active:scale-[0.98]">';
       html += '<img src="' + logo + '" class="h-10 w-10 rounded-lg object-contain shrink-0" crossorigin="anonymous" alt="' + p.name + '">';
       html += '<div class="min-w-0 flex-1">';
-      html += '<div class="font-semibold text-slate-900 text-sm truncate">' + p.name + '</div>';
-      html += '<div class="text-xs text-slate-500">$' + p.price + '/mo</div>';
+      html += '<div class="font-semibold text-slate-900 dark:text-slate-100 text-sm truncate">' + p.name + '</div>';
+      html += '<div class="text-xs text-slate-500 dark:text-slate-400">$' + p.price + '/mo</div>';
       html += '</div></button>';
     }
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline - SubGrid</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="shortcut icon" href="/icons/favicon-32x32.png" />
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.css" integrity="sha512-Ivy7sPrd6LPp20adiK3al16GBelPtqswhJnyXuha3kGtmQ1G2qWpjuipfVDaZUwH26b3RDe8x707asEpvxl7iA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.js" integrity="sha512-pnPZhx5S+z5FSVwy62gcyG2Mun8h6R+PG01MidzU+NGF06/ytcm2r6+AaWMBXAnDHsdHWtsxS0dH8FBKA84FlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Theme initialization (must run before body renders) -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'auto';
+        if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      .iconify {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="flex min-h-screen flex-col bg-[#F8F9FB] dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-100">
+    <div class="flex flex-1 flex-col items-center justify-center px-4 py-12">
+      <div class="mx-auto max-w-md text-center">
+        <!-- Animated Icon -->
+        <div class="mb-8 flex justify-center">
+          <div class="float-animation flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-2xl">
+            <span class="iconify h-12 w-12" data-icon="ph:wifi-slash-bold"></span>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="mb-4 text-3xl font-bold text-slate-900 dark:text-slate-100">You're Offline</h1>
+        
+        <!-- Description -->
+        <p class="mb-8 text-lg text-slate-600 dark:text-slate-300">
+          It looks like you've lost your internet connection. Don't worry, your subscription data is safely stored on your device!
+        </p>
+
+        <!-- Info Box -->
+        <div class="mb-8 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-lg">
+          <div class="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+            <span class="iconify h-5 w-5" data-icon="ph:info-bold"></span>
+            What you can do offline:
+          </div>
+          <ul class="space-y-2 text-left text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="iconify mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" data-icon="ph:check-circle-fill"></span>
+              <span>View your saved subscriptions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="iconify mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" data-icon="ph:check-circle-fill"></span>
+              <span>Add, edit, or delete subscriptions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="iconify mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" data-icon="ph:check-circle-fill"></span>
+              <span>Generate visualizations from cached data</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="iconify mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" data-icon="ph:x-circle-fill"></span>
+              <span>Update exchange rates (requires internet)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Actions -->
+        <div class="space-y-3">
+          <button
+            onclick="window.location.reload()"
+            class="flex w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-indigo-700 hover:scale-105 active:scale-95"
+          >
+            <span class="iconify h-5 w-5" data-icon="ph:arrow-clockwise-bold"></span>
+            Try Again
+          </button>
+          
+          <button
+            onclick="window.history.back()"
+            class="flex w-full items-center justify-center gap-2 rounded-full bg-white dark:bg-slate-800 px-6 py-3 font-semibold text-slate-700 dark:text-slate-200 shadow-md transition-all hover:bg-slate-50 dark:hover:bg-slate-700 hover:scale-105 active:scale-95"
+          >
+            <span class="iconify h-5 w-5" data-icon="ph:arrow-left-bold"></span>
+            Go Back
+          </button>
+          
+          <button
+            onclick="clearAllAppData()"
+            class="flex w-full items-center justify-center gap-2 rounded-full border-2 border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/20 px-6 py-3 font-semibold text-red-700 dark:text-red-400 transition-all hover:border-red-300 dark:hover:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 hover:scale-105 active:scale-95"
+          >
+            <span class="iconify h-5 w-5" data-icon="ph:trash-bold"></span>
+            Clear All Data
+          </button>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="mt-8 text-sm text-slate-400 dark:text-slate-500">
+          <p id="connection-status">Checking connection status...</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/sweetalert-config.js"></script>
+    <script src="js/clear-data.js"></script>
+    <script>
+      // Monitor online/offline status
+      function updateConnectionStatus() {
+        const status = document.getElementById('connection-status');
+        const isDark = document.documentElement.classList.contains('dark');
+        if (navigator.onLine) {
+          status.textContent = '✓ Connection restored! Click "Try Again" to reload.';
+          status.className = 'text-green-600 font-semibold';
+        } else {
+          status.textContent = '✗ Still offline. Please check your connection.';
+          status.className = isDark ? 'text-slate-500' : 'text-slate-400';
+        }
+      }
+
+      window.addEventListener('online', updateConnectionStatus);
+      window.addEventListener('offline', updateConnectionStatus);
+      
+      // Check immediately
+      updateConnectionStatus();
+
+      // Auto-reload when connection is restored (with delay to ensure stability)
+      window.addEventListener('online', () => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

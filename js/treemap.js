@@ -158,12 +158,40 @@ function renderGrid() {
   const gridEl = document.getElementById("bento-grid");
   const totalDisplay = document.getElementById("step-2-total");
   const yearlyDisplay = document.getElementById("step-2-yearly");
+  const searchSectionGrid = document.getElementById("search-section-grid");
+  const searchResultsInfoGrid = document.getElementById("search-results-info-grid");
+
+  // Use filtered subscriptions if search is active
+  const displaySubs = (typeof window.searchQueryGrid !== 'undefined' && window.searchQueryGrid) ? window.filteredSubsGrid : subs;
 
   let monthlyTotal = 0;
   const items = [];
 
-  for (let i = 0; i < subs.length; i++) {
-    const sub = subs[i];
+  // Show/hide search section
+  if (subs.length > 0 && searchSectionGrid) {
+    searchSectionGrid.classList.remove("hidden");
+  } else if (searchSectionGrid) {
+    searchSectionGrid.classList.add("hidden");
+  }
+
+  // Show search results info
+  if (window.searchQueryGrid && searchResultsInfoGrid) {
+    searchResultsInfoGrid.classList.remove("hidden");
+    if (displaySubs.length === 0) {
+      searchResultsInfoGrid.textContent = `No subscriptions found for "${window.searchQueryGrid}"`;
+      searchResultsInfoGrid.classList.add("text-red-500", "dark:text-red-400");
+      searchResultsInfoGrid.classList.remove("text-slate-500", "dark:text-slate-400");
+    } else {
+      searchResultsInfoGrid.textContent = `Found ${displaySubs.length} of ${subs.length} subscriptions`;
+      searchResultsInfoGrid.classList.remove("text-red-500", "dark:text-red-400");
+      searchResultsInfoGrid.classList.add("text-slate-500", "dark:text-slate-400");
+    }
+  } else if (searchResultsInfoGrid) {
+    searchResultsInfoGrid.classList.add("hidden");
+  }
+
+  for (let i = 0; i < displaySubs.length; i++) {
+    const sub = displaySubs[i];
     const monthlyCost = toMonthly(sub);
     monthlyTotal += monthlyCost;
 
@@ -185,7 +213,11 @@ function renderGrid() {
   yearlyDisplay.innerText = formatCurrency(monthlyTotal * 12);
 
   if (items.length === 0) {
-    gridEl.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400">Add subscriptions to see visualization</div>';
+    if (window.searchQueryGrid) {
+      gridEl.innerHTML = '<div class="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 p-8"><span class="iconify mb-3 h-12 w-12" data-icon="ph:magnifying-glass-bold"></span><p class="text-sm font-medium">No subscriptions found</p><p class="text-xs mt-1">Try a different search term</p></div>';
+    } else {
+      gridEl.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400">Add subscriptions to see visualization</div>';
+    }
     return;
   }
 
