@@ -179,6 +179,15 @@ function iconHtml(sub, className) {
 }
 
 function goToStep(stepNum) {
+  // Track step navigation with Rybbit
+  if (window.rybbit) {
+    const stepNames = { 1: "add_subscriptions", 2: "view_grid", 3: "insights" };
+    window.rybbit.event("step_navigation", {
+      step: stepNum,
+      step_name: stepNames[stepNum]
+    });
+  }
+
   document.querySelectorAll(".step-panel").forEach(panel => panel.classList.remove("active"));
   document.getElementById("step-" + stepNum).classList.add("active");
 
