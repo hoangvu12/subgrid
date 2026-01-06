@@ -116,19 +116,19 @@
           >
             <span class="iconify h-8 w-8" data-icon="ph:plus-bold"></span>
           </div>
-          <h3 class="text-lg font-bold text-slate-900">
+          <h3 class="text-lg font-bold text-slate-900" data-i18n="subscriptions.addFirst">
             Add first subscription
           </h3>
-          <p class="mt-1 text-sm text-slate-400">Netflix, Spotify, Gym, etc.</p>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="subscriptions.addFirstHint">Netflix, Spotify, Gym, etc.</p>
         </div>
 
         <div id="sub-list-container" class="mb-4 hidden space-y-3"></div>
 
         <div id="presets-section" class="mb-6">
           <div class="mb-3 flex items-center justify-between">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Add</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="actions.quickAdd">Quick Add</h4>
             <button onclick="openPresetsBrowser()" class="text-xs font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
-              Browse all
+              <span data-i18n="actions.browseAll">Browse all</span>
               <span class="iconify h-3.5 w-3.5" data-icon="ph:caret-right-bold"></span>
             </button>
           </div>
@@ -137,7 +137,7 @@
 
         <div id="import-section" class="mb-24 space-y-3">
           <div class="mb-3">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Import</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="actions.import">Import</h4>
           </div>
           <button
             onclick="openBankImport()"
@@ -145,18 +145,18 @@
           >
             <div class="flex items-center gap-2 text-sm font-semibold text-slate-500">
               <span class="iconify h-5 w-5" data-icon="ph:bank-bold"></span>
-              Import from bank statement
+              <span data-i18n="importExport.importFromBank">Import from bank statement</span>
             </div>
-            <span class="text-xs text-slate-400">CSV file from your bank</span>
+            <span class="text-xs text-slate-400" data-i18n="importExport.csvFromBank">CSV file from your bank</span>
           </button>
           <label
             class="flex cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 bg-white py-4 transition-all hover:border-indigo-300 hover:bg-slate-50 active:scale-[0.99]"
           >
             <div class="flex items-center gap-2 text-sm font-semibold text-slate-500">
               <span class="iconify h-5 w-5" data-icon="ph:upload-simple-bold"></span>
-              Restore from SubGrid backup
+              <span data-i18n="importExport.restoreBackup">Restore from SubGrid backup</span>
             </div>
-            <span class="text-xs text-slate-400">Previously exported .json file</span>
+            <span class="text-xs text-slate-400" data-i18n="importExport.previouslyExported">Previously exported .json file</span>
             <input type="file" accept=".json" onchange="importData(event)" class="hidden" />
           </label>
         </div>
@@ -179,7 +179,7 @@
                 class="pointer-events-auto hidden items-center gap-1.5 rounded-full bg-white py-3 pl-4 pr-5 text-sm font-bold text-slate-400 shadow-lg shadow-slate-900/10 transition-all hover:text-red-500 active:scale-95 sm:py-3.5 sm:pl-5 sm:pr-6"
               >
                 <span class="iconify h-4 w-4" data-icon="ph:trash-bold"></span>
-                Clear All
+                <span data-i18n="actions.clearAll">Clear All</span>
               </button>
             </div>
             <button
@@ -188,7 +188,7 @@
               disabled
               class="pointer-events-auto flex cursor-not-allowed items-center gap-2 rounded-full bg-slate-900 py-3 pl-5 pr-4 text-sm font-bold text-white opacity-50 shadow-xl shadow-slate-900/20 transition-all hover:scale-105 active:scale-95 sm:py-3.5 sm:pl-6 sm:pr-5 sm:text-base"
             >
-              Generate Grid
+              <span data-i18n="actions.generateGrid">Generate Grid</span>
               <span
                 class="iconify h-5 w-5"
                 data-icon="ph:arrow-right-bold"
@@ -208,7 +208,7 @@
               class="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all bg-slate-900 text-white"
             >
               <span class="iconify h-4 w-4" data-icon="ph:grid-four-bold"></span>
-              Grid
+              <span data-i18n="views.grid">Grid</span>
             </button>
             <button
               id="view-beeswarm"
@@ -216,7 +216,7 @@
               class="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all bg-white text-slate-600"
             >
               <span class="iconify h-4 w-4" data-icon="ph:dots-six-bold"></span>
-              Swarm
+              <span data-i18n="views.swarm">Swarm</span>
             </button>
             <button
               id="view-circlepack"
@@ -224,7 +224,7 @@
               class="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all bg-white text-slate-600"
             >
               <span class="iconify h-4 w-4" data-icon="ph:circles-three-bold"></span>
-              Bubbles
+              <span data-i18n="views.bubbles">Bubbles</span>
             </button>
           </div>
         </div>
@@ -253,6 +253,7 @@
             <div>
               <div
                 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap sm:text-xs"
+                data-i18n="stats.totalMonth"
               >
                 Total / Month
               </div>
@@ -266,6 +267,7 @@
             <div class="text-right">
               <div
                 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 whitespace-nowrap sm:text-xs"
+                data-i18n="stats.yearlyProjection"
               >
                 Yearly Projection
               </div>
@@ -296,6 +298,7 @@
               <button
                 onclick="goToStep(1)"
                 class="pointer-events-auto flex-1 rounded-xl py-3 font-bold text-slate-500 bg-white shadow-lg shadow-slate-900/10 transition-colors hover:bg-slate-100 sm:rounded-2xl sm:py-4"
+                data-i18n="actions.back"
               >
                 Back
               </button>
@@ -307,14 +310,14 @@
                   class="iconify h-5 w-5"
                   data-icon="ph:download-bold"
                 ></span>
-                Export
+                <span data-i18n="actions.export">Export</span>
               </button>
             </div>
             <button
               onclick="goToStep(3)"
               class="pointer-events-auto flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 py-3 font-bold text-white shadow-lg shadow-indigo-500/30 transition-all hover:bg-indigo-700 active:scale-95 sm:w-auto sm:flex-[2] sm:rounded-2xl sm:py-4"
             >
-              Insights
+              <span data-i18n="actions.insights">Insights</span>
               <span
                 class="iconify h-5 w-5"
                 data-icon="ph:arrow-right-bold"
@@ -328,12 +331,9 @@
         <div class="animate-slide-up">
           <div class="text-center mb-6 sm:mb-8">
             <h2 class="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl mb-3">
-              Never get surprised by<br />unexpected charges again
+              <span data-i18n="cta.headline1">Never get surprised by</span><br /><span data-i18n="cta.headline2">unexpected charges again</span>
             </h2>
-            <p class="text-base text-slate-600 sm:text-lg">
-              <img src="https://www.google.com/s2/favicons?domain=vexly.app&sz=64" alt="Vexly" class="inline-block h-5 w-5 rounded align-text-bottom mr-1" />
-              <span class="font-semibold text-slate-800">Vexly</span> tracks all your subscriptions in one place and reminds you before each renewal. Join 800+ users now!
-            </p>
+            <p id="cta-description" class="text-base text-slate-600 sm:text-lg"></p>
           </div>
 
           <div class="mb-6 sm:mb-8">
@@ -354,14 +354,14 @@
               data-rybbit-event="vexly_cta_click"
               class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-8 py-4 text-base font-bold text-white shadow-xl shadow-indigo-600/20 transition-all hover:scale-[1.02] hover:bg-indigo-700 active:scale-95 sm:rounded-2xl sm:text-lg"
             >
-              Take control now
+              <span data-i18n="actions.takeControlNow">Take control now</span>
               <span
                 class="iconify h-5 w-5"
                 data-icon="ph:arrow-right-bold"
               ></span>
             </a>
             <p class="mt-3 text-sm text-slate-500 sm:mt-4">
-              <span class="text-lg">💡</span> Automatically import your <span class="sub-count font-semibold text-indigo-600">0</span> subscriptions
+              <span class="text-lg">💡</span> <span data-i18n="cta.autoImport">Automatically import your</span> <span class="sub-count font-semibold text-indigo-600">0</span> <span data-i18n-plural="subscriptions">subscriptions</span>
             </p>
           </div>
         </div>
@@ -381,7 +381,7 @@
               onclick="goToStep(2)"
               class="pointer-events-auto rounded-xl bg-white px-5 py-3 font-bold text-slate-500 shadow-lg shadow-slate-900/10 transition-colors hover:bg-slate-100 sm:rounded-2xl sm:px-6 sm:py-4"
             >
-              &larr; Back
+              &larr; <span data-i18n="actions.back">Back</span>
             </button>
           </div>
         </div>
@@ -403,7 +403,7 @@
         <div
           class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900" id="modal-title">
+          <h3 class="text-lg font-bold text-slate-900" id="modal-title" data-i18n="subscriptions.addSubscription">
             Add Subscription
           </h3>
           <button
@@ -424,7 +424,7 @@
           <div>
             <label
               class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-              >Website (Optional)</label
+              data-i18n="form.website">Website (Optional)</label
             >
             <div class="flex gap-3">
               <input
@@ -449,7 +449,7 @@
           <div>
             <label
               class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-              >Service Name</label
+              data-i18n="form.serviceName">Service Name</label
             >
             <input
               type="text"
@@ -464,7 +464,7 @@
             <div>
               <label
                 class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-                >Price</label
+                data-i18n="form.price">Price</label
               >
               <input
                 type="number"
@@ -478,7 +478,7 @@
             <div>
               <label
                 class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-                >Currency</label
+                data-i18n="form.currency">Currency</label
               >
               <div class="relative">
                 <select
@@ -496,15 +496,15 @@
           <div>
             <label
               class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-              >Cycle</label
+              data-i18n="form.cycle">Cycle</label
             >
             <select
               id="cycle"
               class="block w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 p-3 text-base font-semibold text-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
             >
-              <option value="Monthly">Monthly</option>
-              <option value="Yearly">Yearly</option>
-              <option value="Weekly">Weekly</option>
+              <option value="Monthly" data-i18n="form.cycleMonthly">Monthly</option>
+              <option value="Yearly" data-i18n="form.cycleYearly">Yearly</option>
+              <option value="Weekly" data-i18n="form.cycleWeekly">Weekly</option>
             </select>
           </div>
           <input type="hidden" id="date" value="" />
@@ -512,7 +512,7 @@
           <div>
             <label
               class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500"
-              >Color</label
+              data-i18n="form.color">Color</label
             >
             <div class="grid grid-cols-6 gap-2" id="color-selector"></div>
             <input type="hidden" id="selected-color" value="" />
@@ -521,6 +521,7 @@
           <button
             type="submit"
             class="w-full rounded-xl bg-slate-900 py-4 font-bold text-white shadow-lg shadow-slate-900/20 transition-all hover:bg-slate-800 active:scale-95"
+            data-i18n="actions.save"
           >
             Save Item
           </button>
@@ -543,7 +544,7 @@
         <div
           class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900">Settings</h3>
+          <h3 class="text-lg font-bold text-slate-900" data-i18n="settings.title">Settings</h3>
           <button
             onclick="closeSettings()"
             class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
@@ -556,7 +557,7 @@
           <div>
             <label
               class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500"
-              >Currency</label
+              data-i18n="settings.currency">Currency</label
             >
             <div class="relative">
               <select
@@ -568,16 +569,32 @@
                 data-icon="ph:caret-down-bold"
               ></span>
             </div>
-            <p class="mt-2 text-xs text-slate-400">
+            <p class="mt-2 text-xs text-slate-400" data-i18n="settings.currencyHint">
               All prices will be converted using approximate exchange rates
             </p>
           </div>
 
           <div class="border-t border-slate-100 pt-6">
-            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500">
+            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500" data-i18n="settings.language">
+              Language
+            </label>
+            <div class="relative">
+              <select
+                id="language-selector"
+                class="block w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-base font-semibold text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+              ></select>
+              <span
+                class="iconify pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+                data-icon="ph:caret-down-bold"
+              ></span>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-100 pt-6">
+            <label class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500" data-i18n="settings.importExport">
               Import & Export
             </label>
-            <p class="mb-4 text-xs text-slate-400">
+            <p class="mb-4 text-xs text-slate-400" data-i18n="settings.importExportHint">
               Backup your subscriptions or transfer them to another device
             </p>
             <div class="flex gap-3">
@@ -586,13 +603,13 @@
                 class="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-slate-200 bg-white py-3 font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-95"
               >
                 <span class="iconify h-5 w-5" data-icon="ph:download-simple-bold"></span>
-                Export
+                <span data-i18n="actions.export">Export</span>
               </button>
               <label
                 class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-slate-200 bg-white py-3 font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-95"
               >
                 <span class="iconify h-5 w-5" data-icon="ph:upload-simple-bold"></span>
-                Import
+                <span data-i18n="actions.import">Import</span>
                 <input type="file" accept=".json" onchange="importData(event)" class="hidden" />
               </label>
             </div>
@@ -617,7 +634,7 @@
         <div
           class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
         >
-          <h3 class="text-lg font-bold text-slate-900">Browse Subscriptions</h3>
+          <h3 class="text-lg font-bold text-slate-900" data-i18n="presets.browse">Browse Subscriptions</h3>
           <button
             onclick="closePresetsBrowser()"
             class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
@@ -633,6 +650,7 @@
               type="text"
               id="presets-search"
               placeholder="Search subscriptions..."
+              data-i18n-placeholder="presets.search"
               oninput="filterPresets(this.value)"
               class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
             />
@@ -763,6 +781,17 @@
     </div>
 
 
+    <script src="js/translations/en.js"></script>
+    <script src="js/translations/th.js"></script>
+    <script src="js/translations/es.js"></script>
+    <script src="js/translations/zh.js"></script>
+    <script src="js/translations/ja.js"></script>
+    <script src="js/translations/fr.js"></script>
+    <script src="js/translations/de.js"></script>
+    <script src="js/translations/ko.js"></script>
+    <script src="js/translations/pt.js"></script>
+    <script src="js/translations/vi.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/presets.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/rates.js"></script>

@@ -107,11 +107,7 @@ function renderBeeswarm() {
   const container = document.getElementById("beeswarm-container");
   if (!container || !subs.length) {
     if (container) {
-      container.innerHTML = `
-        <div class="flex items-center justify-center h-full text-slate-400">
-          <p>Add subscriptions to see the beeswarm plot</p>
-        </div>
-      `;
+      container.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400"><p>' + t("subscriptions.noSubscriptions") + '</p></div>';
     }
     return;
   }
@@ -139,7 +135,7 @@ function renderBeeswarm() {
       ${formatCurrencyShort(maxCost)}
     </div>
     <div class="absolute left-1/2 -translate-x-1/2 bottom-2 sm:bottom-4 text-[10px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wider">
-      Monthly Cost
+      ${t("visualization.monthlyCost")}
     </div>
   `;
 

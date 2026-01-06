@@ -207,7 +207,7 @@ function goToStep(stepNum) {
     renderStats();
   }
 
-  indicator.innerText = "Step " + stepNum + " of 3";
+  indicator.innerText = t("nav.stepOf", { current: stepNum, total: 3 });
   step = stepNum;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -296,7 +296,7 @@ function renderList() {
   }
 
   html += '<button onclick="openModal()" class="w-full py-4 rounded-2xl border-2 border-dashed border-slate-200 text-slate-400 font-bold hover:border-indigo-300 hover:text-indigo-600 hover:bg-white transition-all flex items-center justify-center gap-2">';
-  html += '<span class="iconify w-5 h-5" data-icon="ph:plus-bold"></span> Add Another</button>';
+  html += '<span class="iconify w-5 h-5" data-icon="ph:plus-bold"></span> ' + t("actions.addAnother") + '</button>';
 
   listContainer.innerHTML = html;
 }
@@ -358,7 +358,7 @@ function removeSub(subId) {
 }
 
 function clearAllSubs() {
-  if (!confirm("Delete all subscriptions?")) return;
+  if (!confirm(t("subscriptions.deleteAll"))) return;
   subs = [];
   save();
 }
@@ -377,8 +377,8 @@ function editSub(subId) {
   updateFavicon(sub.url || "");
   pickColor(sub.color || randColor().id);
 
-  document.getElementById("modal-title").innerText = "Edit Subscription";
-  document.querySelector("#sub-form button[type='submit']").innerText = "Save Changes";
+  document.getElementById("modal-title").innerText = t("subscriptions.editSubscription");
+  document.querySelector("#sub-form button[type='submit']").innerText = t("actions.saveChanges");
 
   showModal();
 }
@@ -498,15 +498,41 @@ function handleFormSubmit(evt) {
   hideModal();
 }
 
+function initLanguageSelector() {
+  const dropdown = document.getElementById("language-selector");
+  if (!dropdown) return;
+
+  const langs = getAvailableLanguages();
+  let html = "";
+
+  for (let i = 0; i < langs.length; i++) {
+    const lang = langs[i];
+    const selected = (lang.code === getLang()) ? " selected" : "";
+    html += '<option value="' + lang.code + '"' + selected + '>' + lang.nativeName + ' (' + lang.name + ')</option>';
+  }
+
+  dropdown.innerHTML = html;
+  dropdown.addEventListener("change", function(e) {
+    setLanguage(e.target.value);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
+  // Initialize i18n first
+  initI18n();
+
   await window.initRates();
   load();
   loadCurrency();
   initColorPicker();
   initCurrencySelector();
   initFormCurrencySelector();
+  initLanguageSelector();
   renderPresets();
   renderList();
   renderStats();
   document.getElementById("date").value = new Date().toISOString().split("T")[0];
+
+  // Apply initial translations
+  refreshUI();
 });

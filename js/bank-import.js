@@ -101,7 +101,7 @@ function handleBankCSV(event) {
     const rows = parsed.rows;
 
     if (headers.length < 3 || rows.length < 1) {
-      alert("Invalid CSV file. Make sure it has headers and transaction data.");
+      alert(t("bankImport.invalidCsv"));
       return;
     }
 
@@ -369,7 +369,7 @@ function renderDetectedList() {
     html += '<input type="checkbox"' + checked + ' onchange="toggleDetectedSub(' + i + ')" class="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">';
     html += '<div class="flex-1 min-w-0">';
     html += '<div class="font-semibold text-slate-900 text-sm truncate">' + sub.name + '</div>';
-    html += '<div class="text-xs text-slate-500">' + sub.cycle + ' · Found ' + sub.count + 'x</div>';
+    html += '<div class="text-xs text-slate-500">' + t("form.cycle" + sub.cycle) + ' · ' + t("bankImport.foundInStatement", { count: sub.count }) + '</div>';
     html += '</div>';
     html += '<div class="text-sm font-bold text-slate-900">$' + sub.price.toFixed(2) + '</div>';
     html += '</label>';
@@ -406,13 +406,13 @@ function renderOtherTransactions(searchFilter) {
   let filtered = otherTransactions;
   if (searchFilter && searchFilter.length > 0) {
     const q = searchFilter.toLowerCase();
-    filtered = otherTransactions.filter(function(t) {
-      return t.name.toLowerCase().includes(q);
+    filtered = otherTransactions.filter(function(txn) {
+      return txn.name.toLowerCase().includes(q);
     });
   }
 
   if (filtered.length === 0) {
-    listEl.innerHTML = '<div class="text-xs text-slate-400 text-center py-3">No transactions found</div>';
+    listEl.innerHTML = '<div class="text-xs text-slate-400 text-center py-3">' + t("bankImport.noTransactions") + '</div>';
     return;
   }
 
@@ -427,7 +427,7 @@ function renderOtherTransactions(searchFilter) {
     html += '<button onclick="addFromOther(' + origIdx + ')" class="flex w-full items-center justify-between rounded-lg border border-slate-100 bg-white px-3 py-2 text-left text-sm transition-all hover:border-indigo-200 hover:bg-indigo-50">';
     html += '<div class="flex-1 min-w-0">';
     html += '<div class="font-medium text-slate-700 truncate">' + txn.name + '</div>';
-    html += '<div class="text-xs text-slate-400">' + txn.count + 'x in statement</div>';
+    html += '<div class="text-xs text-slate-400">' + t("bankImport.foundInStatement", { count: txn.count }) + '</div>';
     html += '</div>';
     html += '<div class="flex items-center gap-2">';
     html += '<span class="font-semibold text-slate-900">$' + txn.price.toFixed(2) + '</span>';
@@ -468,12 +468,12 @@ function updateAddButtonText() {
   const btn = document.getElementById("add-selected-btn");
 
   if (selectedCount > 0) {
-    const plural = selectedCount > 1 ? "s" : "";
-    btn.textContent = "Add " + selectedCount + " Subscription" + plural;
+    const key = selectedCount > 1 ? "bankImport.addCountPlural" : "bankImport.addCount";
+    btn.textContent = t(key, { count: selectedCount });
     btn.disabled = false;
     btn.classList.remove("opacity-50", "cursor-not-allowed");
   } else {
-    btn.textContent = "Add Selected";
+    btn.textContent = t("bankImport.addSelected");
     btn.disabled = true;
     btn.classList.add("opacity-50", "cursor-not-allowed");
   }
@@ -499,8 +499,8 @@ function addSelectedSubscriptions() {
   save();
   closeBankImport();
 
-  const plural = toAdd.length > 1 ? "s" : "";
-  alert("Added " + toAdd.length + " subscription" + plural + "!");
+  const key = toAdd.length > 1 ? "bankImport.addedSuccessPlural" : "bankImport.addedSuccess";
+  alert(t(key, { count: toAdd.length }));
 }
 
 // bank names are ugly like "NETFLIX.COM*PURCHASE" so clean them up

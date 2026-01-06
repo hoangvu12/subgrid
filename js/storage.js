@@ -75,22 +75,23 @@ function importData(evt) {
       const data = JSON.parse(e.target.result);
 
       if (!data.subscriptions || !Array.isArray(data.subscriptions)) {
-        throw new Error("Invalid file format");
+        throw new Error(t("importExport.invalidFormat"));
       }
 
       for (let i = 0; i < data.subscriptions.length; i++) {
         const sub = data.subscriptions[i];
         if (!sub.id || !sub.name || typeof sub.price !== "number") {
-          throw new Error("Invalid subscription data");
+          throw new Error(t("importExport.invalidData"));
         }
       }
 
       let replaceExisting = true;
       if (subs.length > 0) {
         replaceExisting = confirm(
-          "You have " + subs.length + " existing subscription(s).\n\n" +
-          "Click OK to replace them with " + data.subscriptions.length + " imported subscription(s).\n\n" +
-          "Click Cancel to merge (add imported to existing)."
+          t("importExport.replaceOrMerge", {
+            existing: subs.length,
+            imported: data.subscriptions.length
+          })
         );
       }
 
@@ -117,10 +118,10 @@ function importData(evt) {
 
       save();
       closeSettings();
-      alert("Successfully imported " + data.subscriptions.length + " subscription(s)!");
+      alert(t("importExport.importSuccess", { count: data.subscriptions.length }));
 
     } catch (err) {
-      alert("Failed to import: " + err.message);
+      alert(t("importExport.importFailed", { error: err.message }));
     }
   };
 

@@ -185,7 +185,7 @@ function renderGrid() {
   yearlyDisplay.innerText = formatCurrency(monthlyTotal * 12);
 
   if (items.length === 0) {
-    gridEl.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400">Add subscriptions to see visualization</div>';
+    gridEl.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400">' + t("subscriptions.noSubscriptions") + '</div>';
     return;
   }
 
@@ -298,7 +298,7 @@ async function exportAsImage() {
 
   const btn = event.target.closest("button");
   const originalHtml = btn.innerHTML;
-  btn.innerHTML = '<span class="iconify h-5 w-5 animate-spin" data-icon="ph:spinner-bold"></span> Exporting...';
+  btn.innerHTML = '<span class="iconify h-5 w-5 animate-spin" data-icon="ph:spinner-bold"></span> ' + t("export.exporting");
   btn.disabled = true;
 
   try {
@@ -339,7 +339,7 @@ async function exportAsImage() {
 
   } catch (err) {
     console.error("export failed:", err);
-    alert("Export failed: " + err.message);
+    alert(t("export.failed", { error: err.message }));
   }
 
   btn.innerHTML = originalHtml;

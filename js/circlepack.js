@@ -191,11 +191,7 @@ function renderCirclePack() {
   const container = document.getElementById("circlepack-container");
   if (!container || !subs.length) {
     if (container) {
-      container.innerHTML = `
-        <div class="flex items-center justify-center h-full text-slate-400">
-          <p>Add subscriptions to see the circle pack</p>
-        </div>
-      `;
+      container.innerHTML = '<div class="flex items-center justify-center h-full text-slate-400"><p>' + t("subscriptions.noSubscriptions") + '</p></div>';
     }
     return;
   }

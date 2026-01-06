@@ -37,8 +37,8 @@ function openModal() {
   updateFavicon("");
   pickColor(randColor().id);
 
-  document.getElementById("modal-title").innerText = "Add Subscription";
-  document.querySelector("#sub-form button[type='submit']").innerText = "Save Item";
+  document.getElementById("modal-title").innerText = t("subscriptions.addSubscription");
+  document.querySelector("#sub-form button[type='submit']").innerText = t("actions.save");
 
   showModal();
 }
@@ -62,8 +62,8 @@ function openModalWithPreset(presetIdx) {
   updateFavicon(preset.domain);
   pickColor(preset.color);
 
-  document.getElementById("modal-title").innerText = "Add Subscription";
-  document.querySelector("#sub-form button[type='submit']").innerText = "Save Item";
+  document.getElementById("modal-title").innerText = t("subscriptions.addSubscription");
+  document.querySelector("#sub-form button[type='submit']").innerText = t("actions.save");
 
   showModal();
 }
@@ -147,14 +147,15 @@ function renderCategoryFilters() {
 
   let html = '<button onclick="selectCategory(null)" class="category-btn px-3 py-1 rounded-full text-xs font-semibold transition-all ';
   html += selectedCategory ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' : 'bg-slate-900 text-white';
-  html += '">All</button>';
+  html += '">' + t("presets.all") + '</button>';
 
   for (let i = 0; i < cats.length; i++) {
     const cat = cats[i];
     const isActive = (selectedCategory === cat);
+    const catLabel = t("categories." + cat) || cat;
     html += '<button onclick="selectCategory(\'' + cat + '\')" class="category-btn px-3 py-1 rounded-full text-xs font-semibold transition-all ';
     html += isActive ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200';
-    html += '">' + cat + '</button>';
+    html += '">' + catLabel + '</button>';
   }
 
   filtersEl.innerHTML = html;
@@ -197,7 +198,7 @@ function renderPresetsBrowserList(presetsToShow) {
   if (!container) return;
 
   if (presetsToShow.length === 0) {
-    container.innerHTML = '<div class="text-center text-slate-400 py-8">No subscriptions found</div>';
+    container.innerHTML = '<div class="text-center text-slate-400 py-8">' + t("presets.noResults") + '</div>';
     return;
   }
 
@@ -217,8 +218,9 @@ function renderPresetsBrowserList(presetsToShow) {
     const catName = categoryNames[c];
     const items = byCategory[catName];
 
+    const catLabel = t("categories." + catName) || catName;
     html += '<div class="mb-5">';
-    html += '<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">' + catName + '</h4>';
+    html += '<h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">' + catLabel + '</h4>';
     html += '<div class="grid grid-cols-2 gap-2">';
 
     for (let i = 0; i < items.length; i++) {
