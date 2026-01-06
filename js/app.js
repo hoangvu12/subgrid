@@ -302,58 +302,15 @@ function renderList() {
 }
 
 function renderStats() {
-  let monthlyTotal = 0;
-  for (const sub of subs) {
-    monthlyTotal += toMonthly(sub);
-  }
-
-  const yearlyTotal = formatCurrency(monthlyTotal * 12, 0);
-
-  document.getElementById("final-yearly").innerText = yearlyTotal;
-  document.getElementById("final-count").innerText = subs.length;
-  document.getElementById("savings-estimate").innerText = yearlyTotal;
-
-  const statsCount = document.getElementById("stats-count");
-  if (statsCount) statsCount.innerText = subs.length;
-
   const vexlyBtn = document.getElementById("vexly-cta");
   if (vexlyBtn) {
     vexlyBtn.href = getVexlyImportUrl();
-    vexlyBtn.querySelector(".sub-count").innerText = subs.length;
   }
 
-  updateEmailPreview();
-}
-
-function updateEmailPreview() {
-  if (subs.length === 0) return;
-
-  const sorted = [...subs].sort((a, b) => toMonthly(b) - toMonthly(a));
-
-  if (sorted[0]) {
-    const name1 = document.getElementById("preview-name-1");
-    const price1 = document.getElementById("preview-price-1");
-    if (name1) name1.innerText = sorted[0].name;
-    if (price1) price1.innerText = formatCurrency(toMonthly(sorted[0]));
-  }
-
-  const previewRow2 = document.getElementById("preview-sub-2");
-  if (sorted[1]) {
-    const name2 = document.getElementById("preview-name-2");
-    const price2 = document.getElementById("preview-price-2");
-    if (name2) name2.innerText = sorted[1].name;
-    if (price2) price2.innerText = formatCurrency(toMonthly(sorted[1]));
-    if (previewRow2) previewRow2.style.display = "flex";
-  } else {
-    if (previewRow2) previewRow2.style.display = "none";
-  }
-
-  const moreCount = document.getElementById("preview-more-count");
-  if (moreCount) {
-    const remaining = Math.max(0, subs.length - 2);
-    moreCount.innerText = remaining;
-    moreCount.parentElement.style.display = remaining > 0 ? "block" : "none";
-  }
+  const subCountElements = document.querySelectorAll(".sub-count");
+  subCountElements.forEach(el => {
+    el.innerText = subs.length;
+  });
 }
 
 function getVexlyImportUrl() {
