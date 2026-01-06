@@ -508,5 +508,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   initFormCurrencySelector();
   renderPresets();
   renderList();
+  renderStats();
   document.getElementById("date").value = new Date().toISOString().split("T")[0];
 });

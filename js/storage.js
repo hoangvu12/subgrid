@@ -19,6 +19,7 @@ function load() {
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(subs));
   renderList();
+  renderStats();
 }
 
 function loadCurrency() {
