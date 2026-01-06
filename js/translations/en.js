@@ -23,7 +23,9 @@ window.translations.en = {
     addAnother: "Add Another",
     browseAll: "Browse all",
     quickAdd: "Quick Add",
-    takeControlNow: "Take control now"
+    takeControlNow: "Take control now",
+    tryExample: "Try with example data",
+    neverMissRenewal: "Never miss a renewal"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.en = {
 
   visualization: {
     monthlyCost: "Monthly Cost"
+  },
+
+  hero: {
+    headline: "See where your money goes",
+    subheadline: "Visualize all your subscriptions in one beautiful grid"
+  },
+
+  privacy: {
+    badge: "Your data stays in your browser"
   }
 };

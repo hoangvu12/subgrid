@@ -258,10 +258,14 @@ function renderList() {
   const emptyState = document.getElementById("empty-state");
   const nextBtn = document.getElementById("next-btn-1");
   const clearBtn = document.getElementById("clear-btn");
+  const tryExampleBtn = document.getElementById("try-example-btn");
+  const privacyBadge = document.getElementById("privacy-badge");
 
   if (subs.length === 0) {
     listContainer.classList.add("hidden");
     emptyState.classList.remove("hidden");
+    if (tryExampleBtn) tryExampleBtn.classList.remove("hidden");
+    if (privacyBadge) privacyBadge.classList.remove("hidden");
     nextBtn.disabled = true;
     nextBtn.classList.add("opacity-50", "cursor-not-allowed");
     clearBtn.classList.add("hidden");
@@ -270,6 +274,8 @@ function renderList() {
   }
 
   emptyState.classList.add("hidden");
+  if (tryExampleBtn) tryExampleBtn.classList.add("hidden");
+  if (privacyBadge) privacyBadge.classList.add("hidden");
   listContainer.classList.remove("hidden");
   nextBtn.disabled = false;
   nextBtn.classList.remove("opacity-50", "cursor-not-allowed");
@@ -312,6 +318,38 @@ function renderStats() {
   });
 }
 
+// Load example subscriptions so users can see the grid without entering their own data
+function loadExampleData() {
+  // Curated mix of common subscriptions that makes a nice looking grid
+  const exampleSubs = [
+    { name: "Netflix", domain: "netflix.com", price: 17.99, cycle: "Monthly", color: "rose" },
+    { name: "Spotify", domain: "spotify.com", price: 11.99, cycle: "Monthly", color: "green" },
+    { name: "ChatGPT Plus", domain: "openai.com", price: 20, cycle: "Monthly", color: "teal" },
+    { name: "YouTube Premium", domain: "youtube.com", price: 13.99, cycle: "Monthly", color: "rose" },
+    { name: "iCloud+", domain: "icloud.com", price: 2.99, cycle: "Monthly", color: "blue" },
+    { name: "Disney+", domain: "disneyplus.com", price: 15.99, cycle: "Monthly", color: "blue" },
+    { name: "Amazon Prime", domain: "amazon.com", price: 14.99, cycle: "Monthly", color: "orange" },
+    { name: "Gym", domain: "", price: 49.99, cycle: "Monthly", color: "purple" },
+  ];
+
+  // Clear existing and add examples
+  subs = exampleSubs.map(function(item, index) {
+    return {
+      id: Date.now().toString() + index,
+      name: item.name,
+      price: item.price,
+      currency: "USD",
+      cycle: item.cycle,
+      url: item.domain,
+      color: item.color,
+      date: new Date().toISOString().split("T")[0]
+    };
+  });
+
+  save();
+  goToStep(2);
+}
+
 function getVexlyImportUrl() {
   const exportData = {
     currency: selectedCurrency,
@@ -330,6 +368,38 @@ function getVexlyImportUrl() {
   return "https://vexly.app/import?subs=" + encoded + "&utm_source=subgrid&utm_medium=email&utm_campaign=import";
 }
 
+// Quick add preset without opening modal - one click to add
+function quickAddPreset(presetIdx) {
+  const preset = presets[presetIdx];
+  if (!preset) return;
+
+  // Check if already added (by name match)
+  const alreadyAdded = subs.some(s => s.name.toLowerCase() === preset.name.toLowerCase());
+  if (alreadyAdded) {
+    // Remove it if already added (toggle behavior)
+    subs = subs.filter(s => s.name.toLowerCase() !== preset.name.toLowerCase());
+    save();
+    renderPresets();
+    return;
+  }
+
+  // Add the subscription directly
+  const subData = {
+    id: Date.now().toString() + Math.random().toString(36).slice(2),
+    name: preset.name,
+    price: preset.price,
+    currency: "USD",
+    cycle: preset.cycle,
+    url: preset.domain,
+    color: preset.color,
+    date: new Date().toISOString().split("T")[0]
+  };
+
+  subs.push(subData);
+  save();
+  renderPresets();
+}
+
 function renderPresets() {
   const grid = document.getElementById("presets-grid");
   if (!grid) return;
@@ -343,10 +413,19 @@ function renderPresets() {
     const presetIndex = presets.indexOf(preset);
     const logo = "https://img.logo.dev/" + preset.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
 
-    html += '<button onclick="openModalWithPreset(' + presetIndex + ')" ';
-    html += 'class="flex flex-col items-center gap-1.5 rounded-xl border border-slate-100 bg-white p-2.5 shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-95 sm:p-3">';
+    // Check if this preset is already added
+    const isAdded = subs.some(s => s.name.toLowerCase() === preset.name.toLowerCase());
+
+    html += '<button onclick="quickAddPreset(' + presetIndex + ')" ';
+    if (isAdded) {
+      html += 'class="relative flex flex-col items-center gap-1.5 rounded-xl border-2 border-indigo-400 bg-indigo-50 p-2.5 shadow-sm transition-all hover:border-indigo-500 active:scale-95 sm:p-3">';
+      html += '<div class="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500 text-white">';
+      html += '<span class="iconify h-3 w-3" data-icon="ph:check-bold"></span></div>';
+    } else {
+      html += 'class="flex flex-col items-center gap-1.5 rounded-xl border border-slate-100 bg-white p-2.5 shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-95 sm:p-3">';
+    }
     html += '<img src="' + logo + '" class="h-8 w-8 rounded-lg object-contain sm:h-10 sm:w-10" crossorigin="anonymous" alt="' + preset.name + '">';
-    html += '<span class="text-[10px] font-semibold text-slate-600 truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
+    html += '<span class="text-[10px] font-semibold ' + (isAdded ? 'text-indigo-600' : 'text-slate-600') + ' truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
     html += '</button>';
   }
   grid.innerHTML = html;
@@ -355,12 +434,14 @@ function renderPresets() {
 function removeSub(subId) {
   subs = subs.filter(s => s.id !== subId);
   save();
+  renderPresets();
 }
 
 function clearAllSubs() {
   if (!confirm(t("subscriptions.deleteAll"))) return;
   subs = [];
   save();
+  renderPresets();
 }
 
 function editSub(subId) {

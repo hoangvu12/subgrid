@@ -23,7 +23,9 @@ window.translations.de = {
     addAnother: "Weiteres hinzufügen",
     browseAll: "Alle anzeigen",
     quickAdd: "Schnell hinzufügen",
-    takeControlNow: "Jetzt starten"
+    takeControlNow: "Jetzt starten",
+    tryExample: "Mit Beispieldaten testen",
+    neverMissRenewal: "Keine Verlängerung verpassen"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.de = {
 
   visualization: {
     monthlyCost: "Monatliche Kosten"
+  },
+
+  hero: {
+    headline: "Sieh, wohin dein Geld fließt",
+    subheadline: "Visualisiere alle deine Abos in einem schönen Raster"
+  },
+
+  privacy: {
+    badge: "Deine Daten bleiben in deinem Browser"
   }
 };

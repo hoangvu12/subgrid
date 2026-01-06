@@ -23,7 +23,9 @@ window.translations.zh = {
     addAnother: "继续添加",
     browseAll: "查看全部",
     quickAdd: "快速添加",
-    takeControlNow: "立即开始"
+    takeControlNow: "立即开始",
+    tryExample: "试用示例数据",
+    neverMissRenewal: "不再错过续费"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.zh = {
 
   visualization: {
     monthlyCost: "月费用"
+  },
+
+  hero: {
+    headline: "看看你的钱都花在哪了",
+    subheadline: "用精美的网格可视化你的所有订阅"
+  },
+
+  privacy: {
+    badge: "数据保存在您的浏览器中"
   }
 };

@@ -23,7 +23,9 @@ window.translations.pt = {
     addAnother: "Adicionar outro",
     browseAll: "Ver todos",
     quickAdd: "Adicionar rápido",
-    takeControlNow: "Começar agora"
+    takeControlNow: "Começar agora",
+    tryExample: "Testar com dados de exemplo",
+    neverMissRenewal: "Nunca perca uma renovação"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.pt = {
 
   visualization: {
     monthlyCost: "Custo mensal"
+  },
+
+  hero: {
+    headline: "Veja para onde vai seu dinheiro",
+    subheadline: "Visualize todas as suas assinaturas em uma grade bonita"
+  },
+
+  privacy: {
+    badge: "Seus dados ficam no seu navegador"
   }
 };

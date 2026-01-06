@@ -23,7 +23,9 @@ window.translations.fr = {
     addAnother: "Ajouter un autre",
     browseAll: "Tout voir",
     quickAdd: "Ajout rapide",
-    takeControlNow: "Commencer"
+    takeControlNow: "Commencer",
+    tryExample: "Essayer avec des exemples",
+    neverMissRenewal: "Ne ratez plus un renouvellement"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.fr = {
 
   visualization: {
     monthlyCost: "Coût mensuel"
+  },
+
+  hero: {
+    headline: "Voyez où va votre argent",
+    subheadline: "Visualisez tous vos abonnements dans une belle grille"
+  },
+
+  privacy: {
+    badge: "Vos données restent dans votre navigateur"
   }
 };

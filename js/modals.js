@@ -228,11 +228,20 @@ function renderPresetsBrowserList(presetsToShow) {
       const idx = presets.indexOf(p);
       const logo = "https://img.logo.dev/" + p.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
 
+      // Check if already added
+      const isAdded = subs.some(s => s.name.toLowerCase() === p.name.toLowerCase());
+
       html += '<button onclick="selectPresetFromBrowser(' + idx + ')" ';
-      html += 'class="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-3 text-left shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-[0.98]">';
+      if (isAdded) {
+        html += 'class="relative flex items-center gap-3 rounded-xl border-2 border-indigo-400 bg-indigo-50 p-3 text-left shadow-sm transition-all hover:border-indigo-500 active:scale-[0.98]">';
+        html += '<div class="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-500 text-white">';
+        html += '<span class="iconify h-3 w-3" data-icon="ph:check-bold"></span></div>';
+      } else {
+        html += 'class="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-3 text-left shadow-sm transition-all hover:border-indigo-200 hover:shadow-md active:scale-[0.98]">';
+      }
       html += '<img src="' + logo + '" class="h-10 w-10 rounded-lg object-contain shrink-0" crossorigin="anonymous" alt="' + p.name + '">';
       html += '<div class="min-w-0 flex-1">';
-      html += '<div class="font-semibold text-slate-900 text-sm truncate">' + p.name + '</div>';
+      html += '<div class="font-semibold ' + (isAdded ? 'text-indigo-600' : 'text-slate-900') + ' text-sm truncate">' + p.name + '</div>';
       html += '<div class="text-xs text-slate-500">$' + p.price + '/mo</div>';
       html += '</div></button>';
     }
@@ -244,11 +253,10 @@ function renderPresetsBrowserList(presetsToShow) {
 }
 
 function selectPresetFromBrowser(idx) {
-  closePresetsBrowser();
-  // small delay so the close animation finishes before opening the form
-  setTimeout(function() {
-    openModalWithPreset(idx);
-  }, 300);
+  // One-click add directly without closing modal
+  quickAddPreset(idx);
+  // Re-render the list to update checkmarks
+  renderPresetsList();
 }
 
 document.addEventListener("DOMContentLoaded", function() {

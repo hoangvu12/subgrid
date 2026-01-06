@@ -23,7 +23,9 @@ window.translations.ja = {
     addAnother: "もう1つ追加",
     browseAll: "すべて見る",
     quickAdd: "かんたん追加",
-    takeControlNow: "今すぐ始める"
+    takeControlNow: "今すぐ始める",
+    tryExample: "サンプルで試す",
+    neverMissRenewal: "更新を見逃さない"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.ja = {
 
   visualization: {
     monthlyCost: "月額"
+  },
+
+  hero: {
+    headline: "お金の使い道を見える化",
+    subheadline: "すべてのサブスクを美しいグリッドで可視化"
+  },
+
+  privacy: {
+    badge: "データはブラウザ内に保存されます"
   }
 };

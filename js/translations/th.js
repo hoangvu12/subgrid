@@ -23,7 +23,9 @@ window.translations.th = {
     addAnother: "เพิ่มอีก",
     browseAll: "ดูทั้งหมด",
     quickAdd: "เพิ่มด่วน",
-    takeControlNow: "เริ่มใช้งานเลย"
+    takeControlNow: "เริ่มใช้งานเลย",
+    tryExample: "ลองใช้ข้อมูลตัวอย่าง",
+    neverMissRenewal: "ไม่พลาดการต่ออายุ"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.th = {
 
   visualization: {
     monthlyCost: "ค่าใช้จ่าย/เดือน"
+  },
+
+  hero: {
+    headline: "ดูว่าเงินของคุณไปไหน",
+    subheadline: "แสดงภาพรายการสมัครสมาชิกทั้งหมดในกริดที่สวยงาม"
+  },
+
+  privacy: {
+    badge: "ข้อมูลของคุณอยู่ในเบราว์เซอร์"
   }
 };

@@ -337,6 +337,11 @@ async function exportAsImage() {
     downloadLink.click();
     downloadLink.remove();
 
+    // Redirect to Step 3 after successful export
+    setTimeout(function() {
+      goToStep(3);
+    }, 500);
+
   } catch (err) {
     console.error("export failed:", err);
     alert(t("export.failed", { error: err.message }));

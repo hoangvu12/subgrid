@@ -138,10 +138,6 @@ function refreshUI() {
   // Re-render current view if on step 2
   if (typeof step !== "undefined" && step === 2 && typeof setView === "function") {
     setView(currentView);
-  }
-
-  // Update stats if on step 3
-  if (typeof step !== "undefined" && step === 3 && typeof renderStats === "function") {
     renderStats();
   }
 

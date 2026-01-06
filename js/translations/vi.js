@@ -23,7 +23,9 @@ window.translations.vi = {
     addAnother: "Thêm tiếp",
     browseAll: "Xem tất cả",
     quickAdd: "Thêm nhanh",
-    takeControlNow: "Bắt đầu ngay"
+    takeControlNow: "Bắt đầu ngay",
+    tryExample: "Dùng thử với dữ liệu mẫu",
+    neverMissRenewal: "Không bỏ lỡ gia hạn"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.vi = {
 
   visualization: {
     monthlyCost: "Chi phí/tháng"
+  },
+
+  hero: {
+    headline: "Xem tiền của bạn đi đâu",
+    subheadline: "Trực quan hoá tất cả các gói đăng ký trong một lưới đẹp mắt"
+  },
+
+  privacy: {
+    badge: "Dữ liệu được lưu trên trình duyệt của bạn"
   }
 };

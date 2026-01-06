@@ -23,7 +23,9 @@ window.translations.ko = {
     addAnother: "하나 더 추가",
     browseAll: "전체 보기",
     quickAdd: "빠른 추가",
-    takeControlNow: "지금 시작하기"
+    takeControlNow: "지금 시작하기",
+    tryExample: "예시 데이터로 체험",
+    neverMissRenewal: "갱신을 놓치지 마세요"
   },
 
   subscriptions: {
@@ -145,5 +147,14 @@ window.translations.ko = {
 
   visualization: {
     monthlyCost: "월 비용"
+  },
+
+  hero: {
+    headline: "내 돈이 어디로 가는지 확인하세요",
+    subheadline: "모든 구독을 아름다운 그리드로 시각화"
+  },
+
+  privacy: {
+    badge: "데이터는 브라우저에 저장됩니다"
   }
 };
