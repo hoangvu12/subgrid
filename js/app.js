@@ -307,9 +307,8 @@ function renderStats() {
     vexlyBtn.href = getVexlyImportUrl();
   }
 
-  const subCountElements = document.querySelectorAll(".sub-count");
-  subCountElements.forEach(el => {
-    el.innerText = subs.length;
+  document.querySelectorAll(".sub-count").forEach(function(el) {
+    if (el) el.innerText = subs.length;
   });
 }
 
