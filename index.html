@@ -155,6 +155,16 @@
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="actions.import">Import</h4>
           </div>
           <button
+            onclick="openSubImport()"
+            class="flex w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 bg-white py-4 transition-all hover:border-indigo-300 hover:bg-slate-50 active:scale-[0.99]"
+          >
+            <div class="flex items-center gap-2 text-sm font-semibold text-slate-500">
+              <span class="iconify h-5 w-5" data-icon="ph:file-csv-bold"></span>
+              <span data-i18n="importExport.importFromCsv">Import subscription list</span>
+            </div>
+            <span class="text-xs text-slate-400" data-i18n="importExport.csvList">CSV file with your subscriptions</span>
+          </button>
+          <button
             onclick="openBankImport()"
             class="flex w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-slate-200 bg-white py-4 transition-all hover:border-indigo-300 hover:bg-slate-50 active:scale-[0.99]"
           >
@@ -792,6 +802,112 @@
       </div>
     </div>
 
+    <!-- Subscription CSV Import Modal -->
+    <div
+      id="sub-import-backdrop"
+      class="fixed inset-0 z-50 hidden bg-slate-900/30 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+      aria-hidden="true"
+    ></div>
+    <div
+      id="sub-import-panel"
+      class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
+    >
+      <div
+        class="pointer-events-auto flex max-h-[90vh] w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-lg sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+      >
+        <div
+          class="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/80 p-5 backdrop-blur"
+        >
+          <h3 class="text-lg font-bold text-slate-900" data-i18n="subImport.title">Import Subscription List</h3>
+          <button
+            onclick="closeSubImport()"
+            class="rounded-full bg-slate-100 p-2 text-slate-400 transition-colors hover:text-slate-600"
+          >
+            <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
+          </button>
+        </div>
+
+        <div class="overflow-y-auto bg-white p-5" style="max-height: 70vh;">
+          <!-- Step 1: Upload -->
+          <div id="sub-import-step-1">
+            <p class="mb-4 text-sm text-slate-600" data-i18n="subImport.uploadHint">
+              Upload a CSV file with your subscriptions. We'll help you map the columns.
+            </p>
+            <label
+              class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 py-8 transition-all hover:border-indigo-400 hover:bg-indigo-50"
+            >
+              <span class="iconify h-10 w-10 text-slate-400" data-icon="ph:file-csv"></span>
+              <span class="text-sm font-semibold text-slate-600" data-i18n="subImport.chooseFile">Choose CSV file</span>
+              <span class="text-xs text-slate-400" data-i18n="subImport.dragDrop">or drag and drop</span>
+              <input type="file" accept=".csv" onchange="handleSubCSV(event)" class="hidden" id="sub-csv-input" />
+            </label>
+            <div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-3">
+              <div class="flex items-start gap-2">
+                <span class="iconify h-5 w-5 text-amber-500 shrink-0 mt-0.5" data-icon="ph:lightbulb-bold"></span>
+                <div class="text-xs text-amber-700">
+                  <p class="font-semibold mb-1" data-i18n="subImport.tipTitle">Tip: CSV format</p>
+                  <p data-i18n="subImport.tipContent">Your CSV should have columns for name, price, and optionally billing cycle. We'll auto-detect most formats!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Map Columns -->
+          <div id="sub-import-step-2" class="hidden">
+            <p class="mb-4 text-sm text-slate-600">
+              <span data-i18n="subImport.foundRows">Found</span> <span id="sub-csv-row-count" class="font-semibold">0</span> <span data-i18n="subImport.rowsMapColumns">rows. Map the columns:</span>
+            </p>
+            <div class="space-y-4">
+              <div>
+                <label class="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-500" data-i18n="subImport.nameColumn">Name Column</label>
+                <select id="sub-map-name" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-medium"></select>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-500" data-i18n="subImport.priceColumn">Price / Amount Column</label>
+                <select id="sub-map-price" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-medium"></select>
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-500" data-i18n="subImport.cycleColumn">Cycle Column (Optional)</label>
+                <select id="sub-map-cycle" class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-medium"></select>
+              </div>
+            </div>
+            <div class="mt-4 rounded-xl bg-slate-50 p-3">
+              <div class="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="subImport.preview">Preview</div>
+              <div id="sub-csv-preview" class="space-y-1 text-xs text-slate-600"></div>
+            </div>
+            <button
+              onclick="parseSubscriptions()"
+              class="mt-4 w-full rounded-xl bg-slate-900 py-3 font-bold text-white transition-all hover:bg-slate-800 active:scale-[0.98]"
+              data-i18n="subImport.parseSubscriptions"
+            >
+              Parse Subscriptions
+            </button>
+          </div>
+
+          <!-- Step 3: Review & Import -->
+          <div id="sub-import-step-3" class="hidden">
+            <p class="mb-4 text-sm text-slate-600">
+              <span data-i18n="subImport.parsedCount">Parsed</span> <span id="parsed-count" class="font-semibold">0</span> <span data-i18n="subImport.subscriptionsSelect">subscriptions. Select which ones to add:</span>
+            </p>
+            <div id="parsed-sub-list" class="space-y-2 max-h-64 overflow-y-auto"></div>
+            <div id="no-parsed-subs" class="hidden py-8 text-center">
+              <span class="iconify mx-auto h-12 w-12 text-slate-300" data-icon="ph:warning"></span>
+              <p class="mt-2 text-sm text-slate-500" data-i18n="subImport.noValidSubs">No valid subscriptions found</p>
+              <p class="text-xs text-slate-400" data-i18n="subImport.checkMapping">Check your column mapping</p>
+            </div>
+
+            <button
+              onclick="addParsedSubscriptions()"
+              id="add-parsed-btn"
+              class="mt-4 w-full rounded-xl bg-indigo-600 py-3 font-bold text-white transition-all hover:bg-indigo-700 active:scale-[0.98]"
+              data-i18n="subImport.addSelected"
+            >
+              Add Selected
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="js/translations/en.js"></script>
     <script src="js/translations/th.js"></script>
@@ -813,5 +929,6 @@
     <script src="js/circlepack.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/bank-import.js"></script>
+    <script src="js/subscription-import.js"></script>
   </body>
 </html>
