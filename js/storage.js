@@ -38,7 +38,6 @@ function saveCurrency(code) {
 
   renderList();
   if (step === 2) renderGrid();
-  if (step === 3) renderStats();
 }
 
 function exportData() {

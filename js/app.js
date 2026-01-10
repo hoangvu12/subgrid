@@ -189,16 +189,13 @@ function goToStep(stepNum) {
   // tried using style.width but the transition didn't look as smooth
   const barClasses = "h-full bg-indigo-600 transition-all duration-500 ease-out rounded-full";
   if (stepNum === 1) {
-    progressBar.className = barClasses + " w-1/3";
-  } else if (stepNum === 2) {
-    progressBar.className = barClasses + " w-2/3";
-    setView(currentView);
+    progressBar.className = barClasses + " w-1/2";
   } else {
     progressBar.className = barClasses + " w-full";
-    renderStats();
+    setView(currentView);
   }
 
-  indicator.innerText = "Step " + stepNum + " of 3";
+  indicator.innerText = "Step " + stepNum + " of 2";
   step = stepNum;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -292,78 +289,6 @@ function renderList() {
   listContainer.innerHTML = html;
 }
 
-function renderStats() {
-  let monthlyTotal = 0;
-  for (const sub of subs) {
-    monthlyTotal += toMonthly(sub);
-  }
-
-  const yearlyTotal = formatCurrency(monthlyTotal * 12, 0);
-
-  document.getElementById("final-yearly").innerText = yearlyTotal;
-  document.getElementById("final-count").innerText = subs.length;
-  document.getElementById("savings-estimate").innerText = yearlyTotal;
-
-  const statsCount = document.getElementById("stats-count");
-  if (statsCount) statsCount.innerText = subs.length;
-
-  const vexlyBtn = document.getElementById("vexly-cta");
-  if (vexlyBtn) {
-    vexlyBtn.href = getVexlyImportUrl();
-    vexlyBtn.querySelector(".sub-count").innerText = subs.length;
-  }
-
-  updateEmailPreview();
-}
-
-function updateEmailPreview() {
-  if (subs.length === 0) return;
-
-  const sorted = [...subs].sort((a, b) => toMonthly(b) - toMonthly(a));
-
-  if (sorted[0]) {
-    const name1 = document.getElementById("preview-name-1");
-    const price1 = document.getElementById("preview-price-1");
-    if (name1) name1.innerText = sorted[0].name;
-    if (price1) price1.innerText = formatCurrency(toMonthly(sorted[0]));
-  }
-
-  const previewRow2 = document.getElementById("preview-sub-2");
-  if (sorted[1]) {
-    const name2 = document.getElementById("preview-name-2");
-    const price2 = document.getElementById("preview-price-2");
-    if (name2) name2.innerText = sorted[1].name;
-    if (price2) price2.innerText = formatCurrency(toMonthly(sorted[1]));
-    if (previewRow2) previewRow2.style.display = "flex";
-  } else {
-    if (previewRow2) previewRow2.style.display = "none";
-  }
-
-  const moreCount = document.getElementById("preview-more-count");
-  if (moreCount) {
-    const remaining = Math.max(0, subs.length - 2);
-    moreCount.innerText = remaining;
-    moreCount.parentElement.style.display = remaining > 0 ? "block" : "none";
-  }
-}
-
-function getVexlyImportUrl() {
-  const exportData = {
-    currency: selectedCurrency,
-    subscriptions: subs.map(sub => ({
-      name: sub.name,
-      price: sub.price,
-      currency: sub.currency || selectedCurrency || "USD",
-      cycle: sub.cycle.toLowerCase(),
-      ...(sub.url && {
-        url: sub.url.startsWith("http") ? sub.url : "https://" + sub.url
-      })
-    }))
-  };
-
-  const encoded = encodeURIComponent(JSON.stringify(exportData));
-  return "https://vexly.app/import?subs=" + encoded + "&utm_source=subgrid&utm_medium=email&utm_campaign=import";
-}
 
 function renderPresets() {
   const grid = document.getElementById("presets-grid");
