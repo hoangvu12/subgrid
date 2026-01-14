@@ -385,6 +385,31 @@ const regionalPrices = {
       // Learning
       Duolingo: { price: 159000 }
     }
+  },
+
+  TH: {
+    currency: "THB",
+    prices: {
+      // Streaming
+      Netflix: { price: 349 },
+      "Disney+": { price: 199 },
+
+      // Music
+      Spotify: { price: 149 },
+      "Apple Music": { price: 139 },
+      "YouTube Premium": { price: 179 },
+
+      // Gaming
+      "Xbox Game Pass": { price: 199 },
+
+      // AI
+      "ChatGPT Plus": { price: 700 },
+      "Claude Pro": { price: 700 },
+
+      // Cloud Storage
+      "iCloud+": { price: 35 },
+      "Google One": { price: 100 }
+    }
   }
 };
 
@@ -397,6 +422,7 @@ const countryNames = {
   CA: "Canada",
   JP: "Japan",
   VN: "Vietnam",
+  TH: "Thailand",
   FR: "France",
   NZ: "New Zealand"
 };
@@ -431,7 +457,10 @@ const TIMEZONE_COUNTRY_MAP = {
 
   // Vietnam
   "Asia/Ho_Chi_Minh": "VN",
-  "Asia/Saigon": "VN"
+  "Asia/Saigon": "VN",
+
+  // Thailand
+  "Asia/Bangkok": "TH"
 
   // US timezones intentionally not mapped - will default to USD
 };

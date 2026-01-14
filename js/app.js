@@ -529,6 +529,7 @@ function initCountrySelector() {
     { code: "DE", name: "Germany", flag: "🇩🇪" },
     { code: "CA", name: "Canada", flag: "🇨🇦" },
     { code: "JP", name: "Japan", flag: "🇯🇵" },
+    { code: "TH", name: "Thailand", flag: "🇹🇭" },
     { code: "VN", name: "Vietnam", flag: "🇻🇳" }
   ];
 
