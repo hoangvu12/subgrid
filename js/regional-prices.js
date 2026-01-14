@@ -410,6 +410,357 @@ const regionalPrices = {
       "iCloud+": { price: 35 },
       "Google One": { price: 100 }
     }
+  },
+
+  // India
+  IN: {
+    currency: "INR",
+    prices: {
+      Netflix: { price: 499 },
+      Spotify: { price: 199 },
+      "YouTube Premium": { price: 129 },
+      "Apple Music": { price: 99 },
+      "ChatGPT Plus": { price: 2000 },
+      "Claude Pro": { price: 2000 },
+      "iCloud+": { price: 75 },
+      "Google One": { price: 130 }
+    }
+  },
+
+  // France
+  FR: {
+    currency: "EUR",
+    prices: {
+      Netflix: { price: 14.99 },
+      Spotify: { price: 10.99 },
+      "YouTube Premium": { price: 12.99 },
+      "Apple Music": { price: 10.99 },
+      "Disney+": { price: 9.99 },
+      "ChatGPT Plus": { price: 20 },
+      "Claude Pro": { price: 20 },
+      "iCloud+": { price: 0.99 },
+      "Google One": { price: 1.99 }
+    }
+  },
+
+  // Spain
+  ES: {
+    currency: "EUR",
+    prices: {
+      Netflix: { price: 13.99 },
+      Spotify: { price: 11.99 },
+      "YouTube Premium": { price: 11.99 },
+      "Apple Music": { price: 10.99 },
+      "Disney+": { price: 9.99 },
+      "ChatGPT Plus": { price: 20 },
+      "Claude Pro": { price: 20 },
+      "iCloud+": { price: 0.99 },
+      "Google One": { price: 1.99 }
+    }
+  },
+
+  // Poland
+  PL: {
+    currency: "PLN",
+    prices: {
+      Netflix: { price: 49 },
+      Spotify: { price: 23.99 },
+      "YouTube Premium": { price: 26.99 },
+      "Apple Music": { price: 21.99 },
+      "ChatGPT Plus": { price: 99 },
+      "Claude Pro": { price: 99 },
+      "iCloud+": { price: 4.99 },
+      "Google One": { price: 8.99 }
+    }
+  },
+
+  // Singapore
+  SG: {
+    currency: "SGD",
+    prices: {
+      Netflix: { price: 22.98 },
+      Spotify: { price: 10.99 },
+      "YouTube Premium": { price: 17.98 },
+      "Apple Music": { price: 10.98 },
+      "Disney+": { price: 11.98 },
+      "ChatGPT Plus": { price: 28 },
+      "Claude Pro": { price: 28 },
+      "iCloud+": { price: 1.48 },
+      "Google One": { price: 2.79 }
+    }
+  },
+
+  // Netherlands
+  NL: {
+    currency: "EUR",
+    prices: {
+      Netflix: { price: 15.99 },
+      Spotify: { price: 10.99 },
+      "YouTube Premium": { price: 11.99 },
+      "Apple Music": { price: 10.99 },
+      "Disney+": { price: 10.99 },
+      "ChatGPT Plus": { price: 20 },
+      "Claude Pro": { price: 20 },
+      "iCloud+": { price: 0.99 },
+      "Google One": { price: 1.99 }
+    }
+  },
+
+  // Brazil
+  BR: {
+    currency: "BRL",
+    prices: {
+      Netflix: { price: 44.90 },
+      Spotify: { price: 21.90 },
+      "YouTube Premium": { price: 24.90 },
+      "Apple Music": { price: 21.90 },
+      "ChatGPT Plus": { price: 110 },
+      "Claude Pro": { price: 110 },
+      "iCloud+": { price: 3.50 },
+      "Google One": { price: 6.99 }
+    }
+  },
+
+  // Mexico
+  MX: {
+    currency: "MXN",
+    prices: {
+      Netflix: { price: 249 },
+      Spotify: { price: 115 },
+      "YouTube Premium": { price: 129 },
+      "Apple Music": { price: 99 },
+      "ChatGPT Plus": { price: 399 },
+      "Claude Pro": { price: 399 },
+      "iCloud+": { price: 17 },
+      "Google One": { price: 35 }
+    }
+  },
+
+  // Italy
+  IT: {
+    currency: "EUR",
+    prices: {
+      Netflix: { price: 13.99 },
+      Spotify: { price: 10.99 },
+      "YouTube Premium": { price: 11.99 },
+      "Apple Music": { price: 10.99 },
+      "Disney+": { price: 9.99 },
+      "ChatGPT Plus": { price: 20 },
+      "Claude Pro": { price: 20 },
+      "iCloud+": { price: 0.99 },
+      "Google One": { price: 1.99 }
+    }
+  },
+
+  // Sweden
+  SE: {
+    currency: "SEK",
+    prices: {
+      Netflix: { price: 149 },
+      Spotify: { price: 119 },
+      "YouTube Premium": { price: 129 },
+      "Apple Music": { price: 119 },
+      "ChatGPT Plus": { price: 239 },
+      "Claude Pro": { price: 239 },
+      "iCloud+": { price: 12 },
+      "Google One": { price: 20 }
+    }
+  },
+
+  // Switzerland
+  CH: {
+    currency: "CHF",
+    prices: {
+      Netflix: { price: 22.90 },
+      Spotify: { price: 12.95 },
+      "YouTube Premium": { price: 15.90 },
+      "Apple Music": { price: 12.90 },
+      "ChatGPT Plus": { price: 22 },
+      "Claude Pro": { price: 22 },
+      "iCloud+": { price: 1 },
+      "Google One": { price: 2 }
+    }
+  },
+
+  // Turkey
+  TR: {
+    currency: "TRY",
+    prices: {
+      Netflix: { price: 289.99 },
+      Spotify: { price: 57.99 },
+      "YouTube Premium": { price: 57.99 },
+      "Apple Music": { price: 39.99 },
+      "ChatGPT Plus": { price: 700 },
+      "Claude Pro": { price: 700 },
+      "iCloud+": { price: 14.99 },
+      "Google One": { price: 19.99 }
+    }
+  },
+
+  // South Africa
+  ZA: {
+    currency: "ZAR",
+    prices: {
+      Netflix: { price: 179 },
+      Spotify: { price: 79.99 },
+      "YouTube Premium": { price: 71.99 },
+      "Apple Music": { price: 59.99 },
+      "ChatGPT Plus": { price: 400 },
+      "Claude Pro": { price: 400 },
+      "iCloud+": { price: 14.99 },
+      "Google One": { price: 29.99 }
+    }
+  },
+
+  // New Zealand
+  NZ: {
+    currency: "NZD",
+    prices: {
+      Netflix: { price: 25.99 },
+      Spotify: { price: 17.99 },
+      "YouTube Premium": { price: 18.99 },
+      "Apple Music": { price: 14.99 },
+      "Disney+": { price: 14.99 },
+      "ChatGPT Plus": { price: 35 },
+      "Claude Pro": { price: 35 },
+      "iCloud+": { price: 1.69 },
+      "Google One": { price: 3.49 }
+    }
+  },
+
+  // Belgium
+  BE: {
+    currency: "EUR",
+    prices: {
+      Netflix: { price: 16.99 },
+      Spotify: { price: 10.99 },
+      "YouTube Premium": { price: 11.99 },
+      "Apple Music": { price: 10.99 },
+      "Disney+": { price: 10.99 },
+      "ChatGPT Plus": { price: 20 },
+      "Claude Pro": { price: 20 },
+      "iCloud+": { price: 0.99 },
+      "Google One": { price: 1.99 }
+    }
+  },
+
+  // Saudi Arabia
+  SA: {
+    currency: "SAR",
+    prices: {
+      Netflix: { price: 43 },
+      Spotify: { price: 25.99 },
+      "YouTube Premium": { price: 25.99 },
+      "Apple Music": { price: 19.99 },
+      "ChatGPT Plus": { price: 85 },
+      "Claude Pro": { price: 85 },
+      "iCloud+": { price: 3.99 },
+      "Google One": { price: 6.99 }
+    }
+  },
+
+  // Indonesia
+  ID: {
+    currency: "IDR",
+    prices: {
+      Netflix: { price: 133200 },
+      Spotify: { price: 54990 },
+      "YouTube Premium": { price: 59000 },
+      "Apple Music": { price: 49000 },
+      "ChatGPT Plus": { price: 320000 },
+      "Claude Pro": { price: 320000 },
+      "iCloud+": { price: 15000 },
+      "Google One": { price: 26900 }
+    }
+  },
+
+  // Malaysia
+  MY: {
+    currency: "MYR",
+    prices: {
+      Netflix: { price: 49.90 },
+      Spotify: { price: 14.90 },
+      "YouTube Premium": { price: 17.90 },
+      "Apple Music": { price: 14.90 },
+      "Disney+": { price: 13.90 },
+      "ChatGPT Plus": { price: 95 },
+      "Claude Pro": { price: 95 },
+      "iCloud+": { price: 3.90 },
+      "Google One": { price: 8.90 }
+    }
+  },
+
+  // Pakistan
+  PK: {
+    currency: "PKR",
+    prices: {
+      Netflix: { price: 800 },
+      Spotify: { price: 349 },
+      "YouTube Premium": { price: 279 },
+      "Apple Music": { price: 250 },
+      "ChatGPT Plus": { price: 5600 },
+      "Claude Pro": { price: 5600 },
+      "iCloud+": { price: 100 },
+      "Google One": { price: 200 }
+    }
+  },
+
+  // Nigeria
+  NG: {
+    currency: "NGN",
+    prices: {
+      Netflix: { price: 6500 },
+      Spotify: { price: 900 },
+      "YouTube Premium": { price: 1100 },
+      "Apple Music": { price: 900 },
+      "ChatGPT Plus": { price: 32000 },
+      "Claude Pro": { price: 32000 },
+      "iCloud+": { price: 500 },
+      "Google One": { price: 1100 }
+    }
+  },
+
+  // Czechia
+  CZ: {
+    currency: "CZK",
+    prices: {
+      Netflix: { price: 309 },
+      Spotify: { price: 159 },
+      "YouTube Premium": { price: 179 },
+      "Apple Music": { price: 165 },
+      "ChatGPT Plus": { price: 550 },
+      "Claude Pro": { price: 550 },
+      "iCloud+": { price: 25 },
+      "Google One": { price: 50 }
+    }
+  },
+
+  // Romania
+  RO: {
+    currency: "RON",
+    prices: {
+      Netflix: { price: 45 },
+      Spotify: { price: 24.99 },
+      "YouTube Premium": { price: 26 },
+      "Apple Music": { price: 24.99 },
+      "ChatGPT Plus": { price: 100 },
+      "Claude Pro": { price: 100 },
+      "iCloud+": { price: 5 },
+      "Google One": { price: 10 }
+    }
+  },
+
+  // Morocco
+  MA: {
+    currency: "MAD",
+    prices: {
+      Netflix: { price: 80 },
+      Spotify: { price: 49.99 },
+      "YouTube Premium": { price: 49.99 },
+      "Apple Music": { price: 39.99 },
+      "ChatGPT Plus": { price: 220 },
+      "Claude Pro": { price: 220 }
+    }
   }
 };
 
@@ -423,8 +774,29 @@ const countryNames = {
   JP: "Japan",
   VN: "Vietnam",
   TH: "Thailand",
+  IN: "India",
   FR: "France",
-  NZ: "New Zealand"
+  ES: "Spain",
+  PL: "Poland",
+  SG: "Singapore",
+  NL: "Netherlands",
+  BR: "Brazil",
+  MX: "Mexico",
+  IT: "Italy",
+  SE: "Sweden",
+  CH: "Switzerland",
+  TR: "Turkey",
+  ZA: "South Africa",
+  NZ: "New Zealand",
+  BE: "Belgium",
+  SA: "Saudi Arabia",
+  ID: "Indonesia",
+  MY: "Malaysia",
+  PK: "Pakistan",
+  NG: "Nigeria",
+  CZ: "Czechia",
+  RO: "Romania",
+  MA: "Morocco"
 };
 
 // Timezone to country mapping for detection
@@ -460,7 +832,78 @@ const TIMEZONE_COUNTRY_MAP = {
   "Asia/Saigon": "VN",
 
   // Thailand
-  "Asia/Bangkok": "TH"
+  "Asia/Bangkok": "TH",
+
+  // India
+  "Asia/Kolkata": "IN",
+  "Asia/Calcutta": "IN",
+
+  // France
+  "Europe/Paris": "FR",
+
+  // Spain
+  "Europe/Madrid": "ES",
+
+  // Poland
+  "Europe/Warsaw": "PL",
+
+  // Singapore
+  "Asia/Singapore": "SG",
+
+  // Netherlands
+  "Europe/Amsterdam": "NL",
+
+  // Brazil
+  "America/Sao_Paulo": "BR",
+  "America/Rio_de_Janeiro": "BR",
+
+  // Mexico
+  "America/Mexico_City": "MX",
+
+  // Italy
+  "Europe/Rome": "IT",
+
+  // Sweden
+  "Europe/Stockholm": "SE",
+
+  // Switzerland
+  "Europe/Zurich": "CH",
+
+  // Turkey
+  "Europe/Istanbul": "TR",
+
+  // South Africa
+  "Africa/Johannesburg": "ZA",
+
+  // New Zealand
+  "Pacific/Auckland": "NZ",
+
+  // Belgium
+  "Europe/Brussels": "BE",
+
+  // Saudi Arabia
+  "Asia/Riyadh": "SA",
+
+  // Indonesia
+  "Asia/Jakarta": "ID",
+
+  // Malaysia
+  "Asia/Kuala_Lumpur": "MY",
+
+  // Pakistan
+  "Asia/Karachi": "PK",
+
+  // Nigeria
+  "Africa/Lagos": "NG",
+
+  // Czechia
+  "Europe/Prague": "CZ",
+
+  // Romania
+  "Europe/Bucharest": "RO",
+
+  // Morocco
+  "Africa/Casablanca": "MA"
 
   // US timezones intentionally not mapped - will default to USD
 };

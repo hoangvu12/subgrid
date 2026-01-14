@@ -50,6 +50,7 @@ window.currencies = {
   PKR: { symbol: "₨", name: "Pakistani Rupee", rate: 278 },
   BDT: { symbol: "৳", name: "Bangladeshi Taka", rate: 110 },
   UAH: { symbol: "₴", name: "Ukrainian Hryvnia", rate: 37.5 },
+  MAD: { symbol: "DH", name: "Moroccan Dirham", rate: 10 },
 };
 
 // tailwind color palette - bg is the lighter shade, accent for gradients
@@ -85,7 +86,8 @@ const currencyLocales = {
   ILS: "he-IL", CZK: "cs-CZ", HUF: "hu-HU", RON: "ro-RO", BGN: "bg-BG",
   HRK: "hr-HR", CLP: "es-CL", COP: "es-CO", ARS: "es-AR", PEN: "es-PE",
   EGP: "ar-EG", NGN: "en-NG", KES: "en-KE", PKR: "en-PK", BDT: "bn-BD",
-  UAH: "uk-UA"
+  UAH: "uk-UA",
+  MAD: "ar-MA"
 };
 
 function convertToBase(amount, fromCurrency) {
@@ -525,12 +527,35 @@ function initCountrySelector() {
   const countries = [
     { code: "US", name: "United States", flag: "🇺🇸" },
     { code: "AU", name: "Australia", flag: "🇦🇺" },
-    { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
-    { code: "DE", name: "Germany", flag: "🇩🇪" },
+    { code: "BE", name: "Belgium", flag: "🇧🇪" },
+    { code: "BR", name: "Brazil", flag: "🇧🇷" },
     { code: "CA", name: "Canada", flag: "🇨🇦" },
+    { code: "CH", name: "Switzerland", flag: "🇨🇭" },
+    { code: "CZ", name: "Czechia", flag: "🇨🇿" },
+    { code: "DE", name: "Germany", flag: "🇩🇪" },
+    { code: "ES", name: "Spain", flag: "🇪🇸" },
+    { code: "FR", name: "France", flag: "🇫🇷" },
+    { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
+    { code: "ID", name: "Indonesia", flag: "🇮🇩" },
+    { code: "IN", name: "India", flag: "🇮🇳" },
+    { code: "IT", name: "Italy", flag: "🇮🇹" },
     { code: "JP", name: "Japan", flag: "🇯🇵" },
+    { code: "MA", name: "Morocco", flag: "🇲🇦" },
+    { code: "MX", name: "Mexico", flag: "🇲🇽" },
+    { code: "MY", name: "Malaysia", flag: "🇲🇾" },
+    { code: "NG", name: "Nigeria", flag: "🇳🇬" },
+    { code: "NL", name: "Netherlands", flag: "🇳🇱" },
+    { code: "NZ", name: "New Zealand", flag: "🇳🇿" },
+    { code: "PK", name: "Pakistan", flag: "🇵🇰" },
+    { code: "PL", name: "Poland", flag: "🇵🇱" },
+    { code: "RO", name: "Romania", flag: "🇷🇴" },
+    { code: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
+    { code: "SE", name: "Sweden", flag: "🇸🇪" },
+    { code: "SG", name: "Singapore", flag: "🇸🇬" },
     { code: "TH", name: "Thailand", flag: "🇹🇭" },
-    { code: "VN", name: "Vietnam", flag: "🇻🇳" }
+    { code: "TR", name: "Turkey", flag: "🇹🇷" },
+    { code: "VN", name: "Vietnam", flag: "🇻🇳" },
+    { code: "ZA", name: "South Africa", flag: "🇿🇦" }
   ];
 
   const savedCountry = localStorage.getItem(COUNTRY_KEY) || "US";
