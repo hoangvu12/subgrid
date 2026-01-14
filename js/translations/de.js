@@ -60,7 +60,9 @@ window.translations.de = {
     currencyHint: "Preise werden mit ungefähren Wechselkursen umgerechnet",
     importExport: "Import & Export",
     importExportHint: "Sichere deine Daten oder übertrage sie auf ein anderes Gerät",
-    language: "Sprache"
+    language: "Sprache",
+    country: "Region",
+    countryHint: "Ändert Preset-Preise auf lokale Preise"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.de = {
 
   privacy: {
     badge: "Deine Daten bleiben in deinem Browser"
+  },
+
+  country: {
+    welcome: "Willkommen!",
+    declineButton: "Nein, USD beibehalten",
+    changeLater: "Du kannst dies später in den Einstellungen ändern"
   }
 };

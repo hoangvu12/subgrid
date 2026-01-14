@@ -383,12 +383,16 @@ function quickAddPreset(presetIdx) {
     return;
   }
 
+  // Get regional price if available
+  const userCountry = localStorage.getItem(COUNTRY_KEY) || "US";
+  const regionalPrice = typeof getRegionalPrice === "function" ? getRegionalPrice(preset.name, userCountry) : null;
+
   // Add the subscription directly
   const subData = {
     id: Date.now().toString() + Math.random().toString(36).slice(2),
     name: preset.name,
-    price: preset.price,
-    currency: "USD",
+    price: regionalPrice ? regionalPrice.price : preset.price,
+    currency: regionalPrice ? regionalPrice.currency : "USD",
     cycle: preset.cycle,
     url: preset.domain,
     color: preset.color,
@@ -513,6 +517,59 @@ function updateFavicon(urlInput) {
   }, 400);
 }
 
+function initCountrySelector() {
+  const dropdown = document.getElementById("country-selector");
+  if (!dropdown) return;
+
+  // Get available countries (those with regional pricing + US)
+  const countries = [
+    { code: "US", name: "United States", flag: "🇺🇸" },
+    { code: "AU", name: "Australia", flag: "🇦🇺" },
+    { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
+    { code: "DE", name: "Germany", flag: "🇩🇪" },
+    { code: "CA", name: "Canada", flag: "🇨🇦" },
+    { code: "JP", name: "Japan", flag: "🇯🇵" },
+    { code: "VN", name: "Vietnam", flag: "🇻🇳" }
+  ];
+
+  const savedCountry = localStorage.getItem(COUNTRY_KEY) || "US";
+
+  let html = "";
+  for (let i = 0; i < countries.length; i++) {
+    const c = countries[i];
+    const selected = (c.code === savedCountry) ? " selected" : "";
+    html += '<option value="' + c.code + '"' + selected + '>' + c.flag + ' ' + c.name + '</option>';
+  }
+
+  dropdown.innerHTML = html;
+  dropdown.addEventListener("change", function(e) {
+    const newCountry = e.target.value;
+    localStorage.setItem(COUNTRY_KEY, newCountry);
+    localStorage.setItem(COUNTRY_PROMPT_SHOWN_KEY, "true");
+
+    // Also update currency to match the country
+    const region = regionalPrices[newCountry];
+    if (region && region.currency) {
+      saveCurrency(region.currency);
+      // Update the currency dropdown to reflect the change
+      const currencyDropdown = document.getElementById("currency-selector");
+      if (currencyDropdown) {
+        currencyDropdown.value = region.currency;
+      }
+    } else {
+      saveCurrency("USD");
+      const currencyDropdown = document.getElementById("currency-selector");
+      if (currencyDropdown) {
+        currencyDropdown.value = "USD";
+      }
+    }
+
+    // Refresh presets to show new regional prices
+    renderPresets();
+    renderPresetsBrowserList();
+  });
+}
+
 function initCurrencySelector() {
   const dropdown = document.getElementById("currency-selector");
   if (!dropdown) return;
@@ -598,6 +655,49 @@ function initLanguageSelector() {
   });
 }
 
+// Country detection for regional pricing
+function detectCountry() {
+  // Try timezone first (no network request needed)
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (TIMEZONE_COUNTRY_MAP && TIMEZONE_COUNTRY_MAP[timezone]) {
+    return TIMEZONE_COUNTRY_MAP[timezone];
+  }
+
+  // Try locale region code (e.g., "en-AU" -> "AU")
+  const locale = navigator.language || (navigator.languages && navigator.languages[0]) || "";
+  const parts = locale.split("-");
+  if (parts.length > 1) {
+    const region = parts[1].toUpperCase();
+    if (regionalPrices && regionalPrices[region]) {
+      return region;
+    }
+  }
+
+  return null; // Unknown, will default to US
+}
+
+function checkCountryDetection() {
+  const savedCurrency = localStorage.getItem(CURRENCY_KEY);
+  const promptShown = localStorage.getItem(COUNTRY_PROMPT_SHOWN_KEY);
+
+  // Only show prompt on first load (no saved currency and prompt not shown)
+  if (savedCurrency || promptShown) {
+    return;
+  }
+
+  const detectedCountry = detectCountry();
+
+  // Only show modal if we detected a non-US country with regional pricing
+  if (detectedCountry && regionalPrices && regionalPrices[detectedCountry]) {
+    localStorage.setItem("subgrid_detected_country", detectedCountry);
+    updateCountryModalUI(detectedCountry);
+    showCountryModal();
+  } else {
+    // Default to US, mark as shown
+    localStorage.setItem(COUNTRY_PROMPT_SHOWN_KEY, "true");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Initialize i18n first
   initI18n();
@@ -605,10 +705,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   await window.initRates();
   load();
   loadCurrency();
+  checkCountryDetection();
   initColorPicker();
   initCurrencySelector();
   initFormCurrencySelector();
   initLanguageSelector();
+  initCountrySelector();
   renderPresets();
   renderList();
   renderStats();

@@ -231,6 +231,12 @@ function renderPresetsBrowserList(presetsToShow) {
       // Check if already added
       const isAdded = subs.some(s => s.name.toLowerCase() === p.name.toLowerCase());
 
+      // Get regional price if available
+      const userCountry = localStorage.getItem(COUNTRY_KEY) || "US";
+      const regionalPrice = typeof getRegionalPrice === "function" ? getRegionalPrice(p.name, userCountry) : null;
+      const displayPrice = regionalPrice ? regionalPrice.price : p.price;
+      const displayCurrency = regionalPrice ? (currencies[regionalPrice.currency]?.symbol || "$") : "$";
+
       html += '<button onclick="selectPresetFromBrowser(' + idx + ')" ';
       if (isAdded) {
         html += 'class="relative flex items-center gap-3 rounded-xl border-2 border-indigo-400 bg-indigo-50 p-3 text-left shadow-sm transition-all hover:border-indigo-500 active:scale-[0.98]">';
@@ -242,7 +248,7 @@ function renderPresetsBrowserList(presetsToShow) {
       html += '<img src="' + logo + '" class="h-10 w-10 rounded-lg object-contain shrink-0" crossorigin="anonymous" alt="' + p.name + '">';
       html += '<div class="min-w-0 flex-1">';
       html += '<div class="font-semibold ' + (isAdded ? 'text-indigo-600' : 'text-slate-900') + ' text-sm truncate">' + p.name + '</div>';
-      html += '<div class="text-xs text-slate-500">$' + p.price + '/mo</div>';
+      html += '<div class="text-xs text-slate-500">' + displayCurrency + displayPrice + '/mo</div>';
       html += '</div></button>';
     }
 
@@ -257,6 +263,74 @@ function selectPresetFromBrowser(idx) {
   quickAddPreset(idx);
   // Re-render the list to update checkmarks
   renderPresetsList();
+}
+
+// Country detection modal
+const countryBackdrop = document.getElementById("country-backdrop");
+const countryPanel = document.getElementById("country-panel");
+const countryInner = countryPanel ? countryPanel.querySelector("div") : null;
+
+function showCountryModal() {
+  if (countryBackdrop) countryBackdrop.classList.remove("hidden");
+  if (countryPanel) countryPanel.classList.remove("hidden");
+
+  requestAnimationFrame(function() {
+    if (countryBackdrop) countryBackdrop.classList.remove("opacity-0");
+    if (countryInner) {
+      countryInner.classList.remove("translate-y-full", "sm:scale-95", "opacity-0");
+      countryInner.classList.add("translate-y-0", "sm:translate-y-0", "sm:scale-100", "opacity-100");
+    }
+  });
+}
+
+function hideCountryModal() {
+  if (countryBackdrop) countryBackdrop.classList.add("opacity-0");
+
+  if (countryInner) {
+    countryInner.classList.remove("translate-y-0", "sm:translate-y-0", "sm:scale-100", "opacity-100");
+    countryInner.classList.add("translate-y-full", "sm:scale-95", "opacity-0");
+  }
+
+  setTimeout(function() {
+    if (countryBackdrop) countryBackdrop.classList.add("hidden");
+    if (countryPanel) countryPanel.classList.add("hidden");
+  }, 300);
+}
+
+function updateCountryModalUI(countryCode) {
+  const region = regionalPrices[countryCode];
+  const name = countryNames[countryCode] || countryCode;
+  const currency = region ? region.currency : "USD";
+
+  const flagEl = document.getElementById("country-flag");
+  const nameEl = document.getElementById("country-name");
+  const currencyEl = document.getElementById("country-currency");
+  const acceptBtn = document.getElementById("accept-regional-btn");
+
+  if (flagEl) flagEl.textContent = countryToFlag(countryCode);
+  if (nameEl) nameEl.textContent = name;
+  if (currencyEl) currencyEl.textContent = currency;
+  if (acceptBtn) acceptBtn.textContent = "Yes, use " + currency + " prices";
+}
+
+function acceptRegionalPricing() {
+  const detectedCountry = localStorage.getItem("subgrid_detected_country");
+  const region = regionalPrices[detectedCountry];
+
+  if (region) {
+    saveCurrency(region.currency);
+    localStorage.setItem(COUNTRY_KEY, detectedCountry);
+  }
+  localStorage.setItem(COUNTRY_PROMPT_SHOWN_KEY, "true");
+  hideCountryModal();
+  renderPresets();
+}
+
+function declineRegionalPricing() {
+  saveCurrency("USD");
+  localStorage.setItem(COUNTRY_KEY, "US");
+  localStorage.setItem(COUNTRY_PROMPT_SHOWN_KEY, "true");
+  hideCountryModal();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -286,5 +360,10 @@ document.addEventListener("DOMContentLoaded", function() {
   if (bankPanel) {
     bankPanel.addEventListener("click", closeBankImport);
     if (bankInner) bankInner.addEventListener("click", function(e) { e.stopPropagation(); });
+  }
+
+  // Country modal - no backdrop close (user must choose)
+  if (countryPanel && countryInner) {
+    countryInner.addEventListener("click", function(e) { e.stopPropagation(); });
   }
 });

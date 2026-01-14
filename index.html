@@ -579,6 +579,26 @@
           <div>
             <label
               class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500"
+              data-i18n="settings.country">Country</label
+            >
+            <div class="relative">
+              <select
+                id="country-selector"
+                class="block w-full appearance-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-base font-semibold text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+              ></select>
+              <span
+                class="iconify pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+                data-icon="ph:caret-down-bold"
+              ></span>
+            </div>
+            <p class="mt-2 text-xs text-slate-400" data-i18n="settings.countryHint">
+              Sets local prices for quick-add presets
+            </p>
+          </div>
+
+          <div class="border-t border-slate-100 pt-6">
+            <label
+              class="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-500"
               data-i18n="settings.currency">Currency</label
             >
             <div class="relative">
@@ -909,6 +929,47 @@
       </div>
     </div>
 
+    <!-- Country Detection Modal -->
+    <div
+      id="country-backdrop"
+      class="fixed inset-0 z-50 hidden bg-slate-900/30 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+      aria-hidden="true"
+    ></div>
+    <div
+      id="country-panel"
+      class="pointer-events-none fixed inset-0 z-50 flex hidden items-end justify-center sm:items-center sm:p-4"
+    >
+      <div
+        class="pointer-events-auto flex w-full translate-y-full transform flex-col overflow-hidden rounded-t-3xl bg-white opacity-0 shadow-2xl transition-all duration-300 sm:max-w-md sm:translate-y-10 sm:scale-95 sm:rounded-3xl"
+      >
+        <div class="p-6 text-center">
+          <div class="mx-auto mb-4 text-4xl" id="country-flag"></div>
+          <h3 class="mb-2 text-xl font-bold text-slate-900" data-i18n="country.welcome">Welcome!</h3>
+          <p class="mb-6 text-sm text-slate-600" id="country-message">
+            We detected you're in <strong id="country-name">Australia</strong>.
+            Would you like to use <strong id="country-currency">AUD</strong> and local prices?
+          </p>
+          <div class="space-y-3">
+            <button
+              onclick="acceptRegionalPricing()"
+              class="w-full rounded-xl bg-indigo-600 py-3.5 font-bold text-white shadow-lg shadow-indigo-600/20 transition-all hover:bg-indigo-700 active:scale-95"
+              id="accept-regional-btn"
+            >
+              Yes, use AUD prices
+            </button>
+            <button
+              onclick="declineRegionalPricing()"
+              class="w-full rounded-xl border-2 border-slate-200 bg-white py-3.5 font-bold text-slate-600 transition-all hover:bg-slate-50 active:scale-95"
+              data-i18n="country.declineButton"
+            >
+              No, keep USD
+            </button>
+          </div>
+          <p class="mt-4 text-xs text-slate-400" data-i18n="country.changeLater">You can change this later in Settings</p>
+        </div>
+      </div>
+    </div>
+
     <script src="js/translations/en.js"></script>
     <script src="js/translations/th.js"></script>
     <script src="js/translations/es.js"></script>
@@ -921,6 +982,7 @@
     <script src="js/translations/vi.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/presets.js"></script>
+    <script src="js/regional-prices.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/rates.js"></script>
     <script src="js/app.js"></script>

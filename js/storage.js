@@ -2,6 +2,8 @@
 // (this was the old name of the project)
 const STORAGE_KEY = "vexly_flow_data";
 const CURRENCY_KEY = "vexly_currency";
+const COUNTRY_KEY = "subgrid_country";
+const COUNTRY_PROMPT_SHOWN_KEY = "subgrid_country_prompt_shown";
 
 function load() {
   try {

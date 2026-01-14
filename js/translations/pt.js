@@ -60,7 +60,9 @@ window.translations.pt = {
     currencyHint: "Os valores serão convertidos com taxas de câmbio aproximadas",
     importExport: "Importar e exportar",
     importExportHint: "Faça backup ou transfira para outro dispositivo",
-    language: "Idioma"
+    language: "Idioma",
+    country: "Região",
+    countryHint: "Altera os preços predefinidos para preços locais"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.pt = {
 
   privacy: {
     badge: "Seus dados ficam no seu navegador"
+  },
+
+  country: {
+    welcome: "Bem-vindo!",
+    declineButton: "Não, manter USD",
+    changeLater: "Você pode alterar isso depois nas Configurações"
   }
 };

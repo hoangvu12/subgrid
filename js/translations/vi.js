@@ -60,7 +60,9 @@ window.translations.vi = {
     currencyHint: "Giá sẽ được quy đổi theo tỷ giá ước tính",
     importExport: "Nhập & Xuất dữ liệu",
     importExportHint: "Sao lưu hoặc chuyển dữ liệu sang thiết bị khác",
-    language: "Ngôn ngữ"
+    language: "Ngôn ngữ",
+    country: "Khu vực",
+    countryHint: "Thay đổi giá mẫu theo giá địa phương"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.vi = {
 
   privacy: {
     badge: "Dữ liệu được lưu trên trình duyệt của bạn"
+  },
+
+  country: {
+    welcome: "Chào mừng!",
+    declineButton: "Không, giữ USD",
+    changeLater: "Bạn có thể thay đổi sau trong Cài đặt"
   }
 };

@@ -60,7 +60,9 @@ window.translations.zh = {
     currencyHint: "金额将按大致汇率换算",
     importExport: "导入与导出",
     importExportHint: "备份数据或转移到其他设备",
-    language: "语言"
+    language: "语言",
+    country: "地区",
+    countryHint: "将预设价格更改为当地价格"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.zh = {
 
   privacy: {
     badge: "数据保存在您的浏览器中"
+  },
+
+  country: {
+    welcome: "欢迎！",
+    declineButton: "不，保持USD",
+    changeLater: "您可以稍后在设置中更改"
   }
 };

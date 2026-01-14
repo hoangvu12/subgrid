@@ -60,7 +60,9 @@ window.translations.en = {
     currencyHint: "All prices will be converted using approximate exchange rates",
     importExport: "Import & Export",
     importExportHint: "Backup your subscriptions or transfer them to another device",
-    language: "Language"
+    language: "Language",
+    country: "Region",
+    countryHint: "Changes preset prices to local pricing"
   },
 
   views: {
@@ -185,5 +187,11 @@ window.translations.en = {
 
   privacy: {
     badge: "Your data stays in your browser"
+  },
+
+  country: {
+    welcome: "Welcome!",
+    declineButton: "No, keep USD",
+    changeLater: "You can change this later in Settings"
   }
 };

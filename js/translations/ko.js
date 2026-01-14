@@ -60,7 +60,9 @@ window.translations.ko = {
     currencyHint: "대략적인 환율로 변환됩니다",
     importExport: "가져오기 & 내보내기",
     importExportHint: "백업하거나 다른 기기로 옮기기",
-    language: "언어"
+    language: "언어",
+    country: "지역",
+    countryHint: "프리셋 가격을 현지 가격으로 변경"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.ko = {
 
   privacy: {
     badge: "데이터는 브라우저에 저장됩니다"
+  },
+
+  country: {
+    welcome: "환영합니다!",
+    declineButton: "아니요, USD 유지",
+    changeLater: "설정에서 나중에 변경할 수 있습니다"
   }
 };

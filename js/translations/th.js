@@ -60,7 +60,9 @@ window.translations.th = {
     currencyHint: "ราคาจะถูกแปลงตามอัตราแลกเปลี่ยนโดยประมาณ",
     importExport: "นำเข้า & ส่งออก",
     importExportHint: "สำรองข้อมูลหรือย้ายไปอุปกรณ์อื่น",
-    language: "ภาษา"
+    language: "ภาษา",
+    country: "ภูมิภาค",
+    countryHint: "เปลี่ยนราคาพรีเซ็ตเป็นราคาท้องถิ่น"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.th = {
 
   privacy: {
     badge: "ข้อมูลของคุณอยู่ในเบราว์เซอร์"
+  },
+
+  country: {
+    welcome: "ยินดีต้อนรับ!",
+    declineButton: "ไม่ ใช้ USD ต่อไป",
+    changeLater: "คุณสามารถเปลี่ยนได้ภายหลังในการตั้งค่า"
   }
 };

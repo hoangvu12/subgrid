@@ -60,7 +60,9 @@ window.translations.ja = {
     currencyHint: "料金は概算レートで換算されます",
     importExport: "データの読み込み・書き出し",
     importExportHint: "バックアップや他のデバイスへの移行に",
-    language: "言語"
+    language: "言語",
+    country: "地域",
+    countryHint: "プリセット料金を現地価格に変更"
   },
 
   views: {
@@ -156,5 +158,11 @@ window.translations.ja = {
 
   privacy: {
     badge: "データはブラウザ内に保存されます"
+  },
+
+  country: {
+    welcome: "ようこそ！",
+    declineButton: "いいえ、USDのままで",
+    changeLater: "設定で後から変更できます"
   }
 };
