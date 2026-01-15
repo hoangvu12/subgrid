@@ -24,6 +24,12 @@ or
 python -m http.server
 ```
 
+With Docker:
+
+```
+docker compose up
+```
+
 Your data stays in your browser's local storage.
 
 ## Stack

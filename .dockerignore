@@ -1,0 +1,7 @@
+.git
+.github
+*.md
+LICENSE
+wrangler.jsonc
+docker-compose.yml
+Dockerfile
