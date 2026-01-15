@@ -51,6 +51,7 @@ window.currencies = {
   BDT: { symbol: "৳", name: "Bangladeshi Taka", rate: 110 },
   UAH: { symbol: "₴", name: "Ukrainian Hryvnia", rate: 37.5 },
   MAD: { symbol: "DH", name: "Moroccan Dirham", rate: 10 },
+  LKR: { symbol: "Rs", name: "Sri Lankan Rupee", rate: 305 },
 };
 
 // tailwind color palette - bg is the lighter shade, accent for gradients

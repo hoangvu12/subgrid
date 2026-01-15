@@ -761,6 +761,28 @@ const regionalPrices = {
       "ChatGPT Plus": { price: 220 },
       "Claude Pro": { price: 220 }
     }
+  },
+
+  // Sri Lanka
+  LK: {
+    currency: "LKR",
+    prices: {
+      // Streaming
+      Netflix: { price: 2399 },
+
+      // Music
+      Spotify: { price: 749 },
+      "Apple Music": { price: 899 },
+      "YouTube Premium": { price: 599 },
+
+      // AI
+      "ChatGPT Plus": { price: 5990 },
+      "Claude Pro": { price: 5990 },
+
+      // Cloud Storage
+      "iCloud+": { price: 299 },
+      "Google One": { price: 599 }
+    }
   }
 };
 
@@ -796,7 +818,8 @@ const countryNames = {
   NG: "Nigeria",
   CZ: "Czechia",
   RO: "Romania",
-  MA: "Morocco"
+  MA: "Morocco",
+  LK: "Sri Lanka"
 };
 
 // Timezone to country mapping for detection
@@ -903,7 +926,10 @@ const TIMEZONE_COUNTRY_MAP = {
   "Europe/Bucharest": "RO",
 
   // Morocco
-  "Africa/Casablanca": "MA"
+  "Africa/Casablanca": "MA",
+
+  // Sri Lanka
+  "Asia/Colombo": "LK"
 
   // US timezones intentionally not mapped - will default to USD
 };
