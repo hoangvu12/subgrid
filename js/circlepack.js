@@ -211,7 +211,7 @@ function renderCirclePack() {
     const size = item.radius * 2;
     const domain = extractDomain(item.url);
     const logoUrl = domain
-      ? `https://img.logo.dev/${domain}?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png`
+      ? `https://vexly.app/api/proxy/logo?domain=${domain}&size=100&retina=true&format=png`
       : null;
 
     // these thresholds were tuned by eye

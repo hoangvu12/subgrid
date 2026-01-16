@@ -226,7 +226,7 @@ function renderPresetsBrowserList(presetsToShow) {
     for (let i = 0; i < items.length; i++) {
       const p = items[i];
       const idx = presets.indexOf(p);
-      const logo = "https://img.logo.dev/" + p.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
+      const logo = "https://vexly.app/api/proxy/logo?domain=" + p.domain + "&size=100&retina=true&format=png";
 
       // Check if already added
       const isAdded = subs.some(s => s.name.toLowerCase() === p.name.toLowerCase());

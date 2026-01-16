@@ -176,8 +176,7 @@ function iconHtml(sub, className) {
 
   const domain = sub.url.replace(/^(https?:\/\/)?(www\.)?/, "").split("/")[0];
 
-  // logo.dev is pretty good at finding logos, free tier is enough for this
-  const logoUrl = "https://img.logo.dev/" + domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
+  const logoUrl = "https://vexly.app/api/proxy/logo?domain=" + domain + "&size=100&retina=true&format=png";
   return '<img src="' + logoUrl + '" class="' + className + ' object-contain rounded-lg shrink-0" crossorigin="anonymous">';
 }
 
@@ -418,7 +417,7 @@ function renderPresets() {
   for (let i = 0; i < popular.length; i++) {
     const preset = popular[i];
     const presetIndex = presets.indexOf(preset);
-    const logo = "https://img.logo.dev/" + preset.domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
+    const logo = "https://vexly.app/api/proxy/logo?domain=" + preset.domain + "&size=100&retina=true&format=png";
 
     // Check if this preset is already added
     const isAdded = subs.some(s => s.name.toLowerCase() === preset.name.toLowerCase());
@@ -514,7 +513,7 @@ function updateFavicon(urlInput) {
 
     // only fetch if domain looks legit (at least has a tld)
     if (domain.length > 3) {
-      const logoUrl = "https://img.logo.dev/" + domain + "?token=pk_KuI_oR-IQ1-fqpAfz3FPEw&size=100&retina=true&format=png";
+      const logoUrl = "https://vexly.app/api/proxy/logo?domain=" + domain + "&size=100&retina=true&format=png";
       preview.innerHTML = '<img src="' + logoUrl + '" class="w-full h-full object-cover" crossorigin="anonymous">';
     }
   }, 400);
