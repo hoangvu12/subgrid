@@ -2,7 +2,7 @@
 
 const I18N_STORAGE_KEY = "subgrid_language";
 const DEFAULT_LANG = "en";
-const SUPPORTED_LANGS = ["en", "th", "es", "zh", "ja", "fr", "de", "ko", "pt", "vi"];
+const SUPPORTED_LANGS = ["en", "th", "es", "zh", "ja", "fr", "de", "ko", "pt", "vi", "pl", "nl", "it", "sv", "tr", "ar", "id", "ms", "hi", "ur", "cs", "ro", "si"];
 
 let currentLang = DEFAULT_LANG;
 
