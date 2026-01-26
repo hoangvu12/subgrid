@@ -42,7 +42,7 @@ window.currencies = {
   HRK: { symbol: "kn", name: "Croatian Kuna", rate: 6.93 },
   CLP: { symbol: "CLP$", name: "Chilean Peso", rate: 880 },
   COP: { symbol: "COL$", name: "Colombian Peso", rate: 3950 },
-  ARS: { symbol: "ARS$", name: "Argentine Peso", rate: 365 },
+  ARS: { symbol: "ARS$", name: "Argentine Peso", rate: 1430 },
   PEN: { symbol: "S/", name: "Peruvian Sol", rate: 3.72 },
   EGP: { symbol: "E£", name: "Egyptian Pound", rate: 30.9 },
   NGN: { symbol: "₦", name: "Nigerian Naira", rate: 785 },
@@ -88,7 +88,8 @@ const currencyLocales = {
   HRK: "hr-HR", CLP: "es-CL", COP: "es-CO", ARS: "es-AR", PEN: "es-PE",
   EGP: "ar-EG", NGN: "en-NG", KES: "en-KE", PKR: "en-PK", BDT: "bn-BD",
   UAH: "uk-UA",
-  MAD: "ar-MA"
+  MAD: "ar-MA",
+  LKR: "si-LK"
 };
 
 function convertToBase(amount, fromCurrency) {
@@ -526,6 +527,7 @@ function initCountrySelector() {
   // Get available countries (those with regional pricing + US)
   const countries = [
     { code: "US", name: "United States", flag: "🇺🇸" },
+    { code: "AR", name: "Argentina", flag: "🇦🇷" },
     { code: "AU", name: "Australia", flag: "🇦🇺" },
     { code: "BE", name: "Belgium", flag: "🇧🇪" },
     { code: "BR", name: "Brazil", flag: "🇧🇷" },
@@ -552,6 +554,7 @@ function initCountrySelector() {
     { code: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
     { code: "SE", name: "Sweden", flag: "🇸🇪" },
     { code: "SG", name: "Singapore", flag: "🇸🇬" },
+    { code: "LK", name: "Sri Lanka", flag: "🇱🇰" },
     { code: "TH", name: "Thailand", flag: "🇹🇭" },
     { code: "TR", name: "Turkey", flag: "🇹🇷" },
     { code: "VN", name: "Vietnam", flag: "🇻🇳" },

@@ -783,6 +783,29 @@ const regionalPrices = {
       "iCloud+": { price: 299 },
       "Google One": { price: 599 }
     }
+  },
+
+  // Argentina
+  AR: {
+    currency: "ARS",
+    prices: {
+      // Streaming
+      Netflix: { price: 11999 },
+      "Disney+": { price: 10164 },
+
+      // Music
+      Spotify: { price: 3299 },
+      "Apple Music": { price: 3499 },
+      "YouTube Premium": { price: 3399 },
+
+      // AI
+      "ChatGPT Plus": { price: 28000 },
+      "Claude Pro": { price: 28000 },
+
+      // Cloud Storage
+      "iCloud+": { price: 1399 },
+      "Google One": { price: 2799 }
+    }
   }
 };
 
@@ -819,7 +842,8 @@ const countryNames = {
   CZ: "Czechia",
   RO: "Romania",
   MA: "Morocco",
-  LK: "Sri Lanka"
+  LK: "Sri Lanka",
+  AR: "Argentina"
 };
 
 // Timezone to country mapping for detection
@@ -929,7 +953,15 @@ const TIMEZONE_COUNTRY_MAP = {
   "Africa/Casablanca": "MA",
 
   // Sri Lanka
-  "Asia/Colombo": "LK"
+  "Asia/Colombo": "LK",
+
+  // Argentina
+  "America/Buenos_Aires": "AR",
+  "America/Argentina/Buenos_Aires": "AR",
+  "America/Argentina/Cordoba": "AR",
+  "America/Argentina/Mendoza": "AR",
+  "America/Argentina/Salta": "AR",
+  "America/Argentina/Tucuman": "AR"
 
   // US timezones intentionally not mapped - will default to USD
 };
