@@ -26,9 +26,21 @@ python -m http.server
 
 Your data stays in your browser's local storage.
 
+## Build CSS (Tailwind CLI)
+
+```
+bun run prebuild
+```
+
+## Publish to Cloudflare Pages
+
+```
+bun run publish
+```
+
 ## Stack
 
-Plain HTML, CSS, and JavaScript. Uses Tailwind CSS for styling.
+Plain HTML, CSS, and JavaScript. Uses Tailwind CSS (CLI build) for styling.
 
 ## License
 

@@ -8,52 +8,12 @@
       name="description"
       content="Visualize your subscription costs with an interactive grid. See the true proportion of your monthly spending at a glance."
     />
-    <script src="js/tailwindcss.js"></script>
-    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+    <script src="js/vendor/iconify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/modern-screenshot@4.6.7/dist/index.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"Plus Jakarta Sans"', "sans-serif"],
-            },
-            colors: {
-              brand: {
-                purple: "#E5DEFF",
-                yellow: "#FFF4C3",
-                orange: "#FFDCC2",
-                cyan: "#C6F6F6",
-                dark: "#0f172a",
-              },
-            },
-            boxShadow: {
-              soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
-              card: "0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)",
-              glow: "0 0 20px rgba(99, 102, 241, 0.5)",
-            },
-            animation: {
-              "fade-in": "fadeIn 0.3s ease-out forwards",
-              "slide-up": "slideUp 0.4s ease-out forwards",
-            },
-            keyframes: {
-              fadeIn: {
-                "0%": { opacity: "0" },
-                "100%": { opacity: "1" },
-              },
-              slideUp: {
-                "0%": { opacity: "0", transform: "translateY(20px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
-          },
-        },
-      };
-    </script>
     <link rel="stylesheet" href="styles.css" />
     <script
       src="https://api.firstjobb.se/api/script.js"

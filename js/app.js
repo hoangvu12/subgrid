@@ -170,15 +170,17 @@ function toMonthly(sub) {
   return convertToBase(monthly, subCurrency);
 }
 
-function iconHtml(sub, className) {
+function iconHtml(sub, className, sizePx) {
+  const sizeStyle = Number.isFinite(sizePx) ? ' style="width:' + sizePx + 'px;height:' + sizePx + 'px"' : "";
+
   if (!sub.url) {
-    return '<span class="iconify ' + className + ' text-slate-400 shrink-0" data-icon="ph:cube-bold"></span>';
+    return '<span class="iconify ' + className + ' text-slate-400 shrink-0"' + sizeStyle + ' data-icon="ph:cube-bold"></span>';
   }
 
   const domain = sub.url.replace(/^(https?:\/\/)?(www\.)?/, "").split("/")[0];
 
   const logoUrl = "https://vexly.app/api/proxy/logo?domain=" + domain + "&size=100&retina=true&format=png";
-  return '<img src="' + logoUrl + '" class="' + className + ' object-contain rounded-lg shrink-0" crossorigin="anonymous">';
+  return '<img src="' + logoUrl + '" class="' + className + ' object-contain rounded-lg shrink-0"' + sizeStyle + ' crossorigin="anonymous">';
 }
 
 function goToStep(stepNum) {

@@ -1,0 +1,12 @@
+{
+  "name": "subgrid",
+  "private": true,
+  "scripts": {
+    "prebuild": "bunx tailwindcss@3.4.17 -c tailwind.config.js -i ./src/tailwind.css -o ./styles.css --minify",
+    "build": "echo 'Static site build completed'",
+    "publish": "bun run prebuild && bunx wrangler pages deploy ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

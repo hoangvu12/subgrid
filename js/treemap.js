@@ -242,13 +242,13 @@ function renderGrid() {
 
     if (isMicro) {
       const sz = Math.max(12, Math.min(iconSize, minDim * 0.5));
-      cellContent = '<div class="flex items-center justify-center h-full w-full">' + iconHtml(cell, "w-[" + sz + "px] h-[" + sz + "px]") + '</div>';
+      cellContent = '<div class="flex items-center justify-center h-full w-full">' + iconHtml(cell, "", sz) + '</div>';
 
     } else if (isTiny) {
       const sz = Math.max(14, Math.min(iconSize, minDim * 0.4));
       const ps = Math.max(9, Math.min(priceFont, 13, innerWidth * 0.16));
       cellContent = '<div class="flex flex-col items-center justify-center h-full w-full gap-1">';
-      cellContent += iconHtml(cell, "w-[" + sz + "px] h-[" + sz + "px]");
+      cellContent += iconHtml(cell, "", sz);
       cellContent += '<div class="font-bold text-slate-900" style="font-size:' + ps + 'px">' + formatOriginalMonthlyShort(cell) + '</div>';
       cellContent += '</div>';
 
@@ -258,7 +258,7 @@ function renderGrid() {
       const ps = Math.max(11, Math.min(priceFont, 18, innerWidth * 0.18));
 
       cellContent = '<div class="flex flex-col items-center justify-center h-full w-full gap-1 text-center">';
-      cellContent += iconHtml(cell, "w-[" + sz + "px] h-[" + sz + "px]");
+      cellContent += iconHtml(cell, "", sz);
       cellContent += '<div class="min-w-0 w-full">';
       cellContent += '<div class="font-semibold text-slate-900 treemap-cell-name" style="font-size:' + ts + 'px">' + cell.name + '</div>';
       cellContent += '<div class="font-black text-slate-900" style="font-size:' + ps + 'px">' + formatOriginalMonthlyShort(cell) + '</div>';
@@ -269,7 +269,7 @@ function renderGrid() {
       const showYearlyEstimate = cell.h > 130 && cell.w > 110 && percent > 8;
 
       cellContent = '<div class="flex justify-between items-start">';
-      cellContent += iconHtml(cell, "w-[" + iconSize + "px] h-[" + iconSize + "px]");
+      cellContent += iconHtml(cell, "", iconSize);
       if (showPercentBadge) {
         cellContent += '<span class="text-[10px] font-bold bg-white/70 px-2 py-1 rounded-full text-slate-700">' + Math.round(percent) + '%</span>';
       }
